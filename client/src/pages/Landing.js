@@ -1,19 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 
 
 
 import Wrapper from '../assets/wrappers/LandingPage'
-import Landing_1 from '../components/landing1'
+import Landing1 from '../components/landing1'
 import Main from '../components/Main'
-import Navbar from '../components/Navbar'
+import NavbarH from '../components/NavbarH'
 
 export const Landing = () => {
   return (
     <Wrapper>
-        <Navbar/>
-        <Landing_1 />
+        <NavbarH/>
+        <Landing1 />
         <Main/>
     </Wrapper>
   )
