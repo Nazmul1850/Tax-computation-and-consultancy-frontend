@@ -22,5 +22,10 @@ h3 {
   margin-left: auto;
   margin-right: 8rem;
 }
+.logo-style{
+  display: flex;
+  align-items: center;
+  margin-left: 8rem;
+}
 `
 export default Wrapper

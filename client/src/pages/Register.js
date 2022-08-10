@@ -1,9 +1,7 @@
 
 import {useState, useEffect} from 'react'
-import {Logo} from '../components'
+import {Logo,FormRow,Alert} from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage';
-import { FormRow } from '../components/FormRow';
-import { Alert } from '../components/Alert';
 import { useAppContext } from '../context/appContext';
 
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +24,7 @@ const Register = () => {
 
     const handleChange = (e) => {
         setValues({...values, [e.target.name]:e.target.value})
-      }
+    }
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -45,7 +43,7 @@ const Register = () => {
     useEffect(()=>{
         if(user) {
             setTimeout(()=>{
-                navigate('/home')
+                navigate('/')
             },1000)
         }
     },[user,navigate]);

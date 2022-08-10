@@ -10,6 +10,12 @@ import {
     LOGIN_USER_BEGIN,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_ERROR,
+    TOGGLE_SIDEBAR,
+    LOGOUT_USER,
+    HANDLE_CHANGE,
+    UPDATE_USER_BEGIN,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERROR,
 } from "./actions"
 
 
@@ -22,6 +28,7 @@ const initialState = {
     alertType: '',
     user: user ? JSON.parse(user) : null,
     token: token,
+    showSidebar: false,
 
 }
 
@@ -30,6 +37,12 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    const authFetch = axios.create({
+        baseURL: 'user/',
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+    })
     const displayAlert = () =>{
         dispatch({type:DISPLAY_ALERT})
         clearAlert()
@@ -48,10 +61,11 @@ const AppProvider = ({ children }) => {
         localStorage.removeItem('user')
     }
 
+
     const registerUser = async (currentUser) =>{
         dispatch({type:REGISTER_USER_BEGIN})
         try {
-            const response = await axios.post("/user/signup",currentUser)
+            const response = await axios.post("/auth/signup",currentUser)
             console.log(response)
             const {user,token} = response.data
             try {
@@ -83,7 +97,7 @@ const AppProvider = ({ children }) => {
     const loginUser = async (currentUser) => {
         dispatch({type:LOGIN_USER_BEGIN})
         try {
-            const {data} = await axios.post("/user/login",currentUser)
+            const {data} = await axios.post("/auth/login",currentUser)
             // console.log(response)
             const {user,token} = data
             try {
@@ -112,13 +126,55 @@ const AppProvider = ({ children }) => {
         }
         clearAlert()
     }
+    const logoutUser = () => {
+        dispatch({ type: LOGOUT_USER })
+        removeUserFromLocalStorage()
+    }
+    const toggleSidebar = () => {
+        dispatch({ type: TOGGLE_SIDEBAR })
+    }
+
+    const handleChange = ({ name, value }) => {
+        console.log(name,value)
+        dispatch({
+          type: HANDLE_CHANGE,
+          payload: { name, value },
+        })
+    }
+    const updateUser = async (currentUser) => {
+        dispatch({ type: UPDATE_USER_BEGIN })
+        try {
+          const { data } = await authFetch.patch('profile/update', {client:currentUser})
+      
+          // no token
+          console.log(data)
+          const { user, token } = data
+      
+          dispatch({
+            type: UPDATE_USER_SUCCESS,
+            payload: { user, token },
+          })
+      
+          addUserToLocalStorage({ user, token })
+        } catch (error) {
+          dispatch({
+            type: UPDATE_USER_ERROR,
+            payload: { msg: error.response.data.msg.msg },
+          })
+        }
+        clearAlert()
+    }
     return (
       <AppContext.Provider
         value={{
           ...state,
           displayAlert,
           registerUser,
-          loginUser
+          loginUser,
+          toggleSidebar,
+          logoutUser,
+          handleChange,
+          updateUser,
         }}
       >
         {children}

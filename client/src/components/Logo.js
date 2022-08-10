@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 const Logo = () => {
     return (
         <Wrapper>
-            
-                <Link to='/'>
-                <img src={logo} alt="TaxComputation Consultation " className='logo' />
+                <Link to='/home'>
+                    <img src={logo} alt="TaxComputation Consultation " className='logo' />
                 </Link>
         </Wrapper>
     );

@@ -27,7 +27,11 @@ const Landing_1 = () => {
             </Link> */}
             <ConditionalWrapper
                 condition={loged}
-                wrapper= {children => <p></p>}
+                wrapper= {children => <>
+                    <Link to='/' className='btn btn-hero'>
+                        Dashboard
+                    </Link>
+                </>}
             >
                 <Link to='/register' className='btn btn-hero'>
                     Login/Register
