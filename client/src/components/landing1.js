@@ -2,21 +2,13 @@
 import main from "../assets/images/R.png"
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAppContext } from '../context/appContext'
 
 const Landing_1 = () => {
-    // const fetchData = async ()=> {
-    //     try {
-    //       const response = await fetch("/api/v1/");
-    //       const data = await response.json();
-    //       console.log(data); 
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-    // useEffect(()=>{
-    //     fetchData();
-    // },[]);
-
+    const {token} = useAppContext();
+    const loged = token ? true: false;
+    const ConditionalWrapper = ({ condition, wrapper, children }) => 
+                                 condition ? wrapper(children) : children;
     return (
         <div className='container page'>
             {/* info */}
@@ -33,9 +25,18 @@ const Landing_1 = () => {
             {/* <Link to='/register' className='btn btn-hero'>
                 Login/Register
             </Link> */}
-            <Link to='/register' className='btn btn-hero'>
-                Login/Register
-            </Link>
+            <ConditionalWrapper
+                condition={loged}
+                wrapper= {children => <>
+                    <Link to='/' className='btn btn-hero'>
+                        Dashboard
+                    </Link>
+                </>}
+            >
+                <Link to='/register' className='btn btn-hero'>
+                    Login/Register
+                </Link>
+            </ConditionalWrapper>
             </div>
             <img src={main} alt='job hunt' className='img main-img' />
         </div>

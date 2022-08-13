@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FormRow = ({type,name,value,handleChange,labelText}) => {
+const FormRow = ({type,name,value,handleChange,labelText}) => {
   return (
     <div className='form-row'>
         <label htmlFor={name} className='form-label'>
@@ -17,3 +17,4 @@ export const FormRow = ({type,name,value,handleChange,labelText}) => {
     </div>
   )
 }
+export default FormRow;
