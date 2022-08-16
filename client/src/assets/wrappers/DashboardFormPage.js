@@ -24,6 +24,21 @@ const Wrapper = styled.section`
     display: grid;
     row-gap: 0.5rem;
   }
+  .q-center {
+    display: grid;
+    row-gap: 0.5rem;
+  }
+  .q-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    button {
+      margin: 1rem;
+    }
+  }
+  #QaText{
+    text-align: center;
+  }
   .form-center button {
     align-self: end;
     height: 35px;
