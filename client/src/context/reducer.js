@@ -14,6 +14,15 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    UPDATE_HOUSE_BEGIN,
+    UPDATE_HOUSE_SUCCESS,
+    UPDATE_HOUSE_ERROR,
+    UPDATE_BUSINESS_BEGIN,
+    UPDATE_BUSINESS_SUCCESS,
+    UPDATE_BUSINESS_ERROR,
+    UPDATE_SALARY_BEGIN,
+    UPDATE_SALARY_SUCCESS,
+    UPDATE_SALARY_ERROR,
  } from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -116,6 +125,87 @@ const reducer = (state, action) => {
     }
   }
   if (action.type === UPDATE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+  if (action.type === UPDATE_HOUSE_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_HOUSE_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token:action.payload.token,
+      user: action.payload.user,
+      house: action.payload.house,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'House property Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_HOUSE_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_BUSINESS_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_BUSINESS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token:action.payload.token,
+      user: action.payload.user,
+      business: action.payload.business,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Business Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_BUSINESS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+
+  if (action.type === UPDATE_SALARY_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_SALARY_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token:action.payload.token,
+      user: action.payload.user,
+      salary: action.payload.salary,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Salary Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_SALARY_ERROR) {
     return {
       ...state,
       isLoading: false,

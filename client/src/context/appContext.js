@@ -16,11 +16,24 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    UPDATE_HOUSE_BEGIN,
+    UPDATE_HOUSE_SUCCESS,
+    UPDATE_HOUSE_ERROR,
+    UPDATE_BUSINESS_BEGIN,
+    UPDATE_BUSINESS_SUCCESS,
+    UPDATE_BUSINESS_ERROR,
+    UPDATE_SALARY_BEGIN,
+    UPDATE_SALARY_SUCCESS,
+    UPDATE_SALARY_ERROR,
 } from "./actions"
 
 
 const token = localStorage.getItem('token')
 const user = localStorage.getItem('user')
+const house = localStorage.getItem('house')
+const business = localStorage.getItem('business')
+const salary = localStorage.getItem('salary')
+
 const initialState = {
     isLoading: false,
     showAlert: false,
@@ -28,6 +41,9 @@ const initialState = {
     alertText: '',
     alertType: '',
     user: user ? JSON.parse(user) : null,
+    house: house ? JSON.parse(house) : null,
+    business: business ? JSON.parse(business) : null,
+    salary: salary ? JSON.parse(salary) : null,
     token: token,
     showSidebar: false,
 
@@ -59,10 +75,31 @@ const AppProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('token', token)
     }
+
+    
     const removeUserFromLocalStorage = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
+        localStorage.removeItem('house')
+        localStorage.removeItem('business')
+        localStorage.removeItem('salary')
     }
+    
+    const addHouseToLocalStorage = ({ house }) => {
+        localStorage.setItem('house', JSON.stringify(house))        
+    }
+    const addBusinessToLocalStorage = ({ business }) => {
+        localStorage.setItem('business', JSON.stringify(business))        
+    }
+
+    const addSalaryToLocalStorage = ({ salary }) => {
+        localStorage.setItem('salary', JSON.stringify(salary))        
+    }
+
+
+
+    
+    
 
 
     const registerUser = async (currentUser) =>{
@@ -173,6 +210,85 @@ const AppProvider = ({ children }) => {
         }
         clearAlert()
     }
+
+    const updateHouse = async (currentHouse) => {
+        console.log("Inside update house");
+        console.log(currentHouse);
+        dispatch({ type:UPDATE_HOUSE_BEGIN })
+        try {
+            const { data } = await authFetch.patch('profile/house_property' , {houseProperty:currentHouse});
+            const { user, house , token } = data;
+            
+            console.log(house);
+
+            dispatch({ 
+                type:UPDATE_HOUSE_SUCCESS,
+                payload: { user, house , token }, 
+            });
+
+            addHouseToLocalStorage({ house });
+        } catch (error) {
+            dispatch({
+                type: UPDATE_HOUSE_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+
+    const updateBusiness = async (currentBusiness) => {
+        console.log("Inside update business");
+        console.log(currentBusiness);
+        dispatch({ type:UPDATE_BUSINESS_BEGIN })
+        try {
+            const { data } = await authFetch.patch('profile/business' , {newBusiness:currentBusiness});
+            const { user, business , token } = data;
+            
+            console.log(house);
+
+            dispatch({ 
+                type:UPDATE_BUSINESS_SUCCESS,
+                payload: { user, business , token }, 
+            });
+
+            addBusinessToLocalStorage({ business });
+        } catch (error) {
+            dispatch({
+                type: UPDATE_BUSINESS_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+
+
+
+    const updateSalary = async (currentSalary) => {
+        console.log("Inside update salary");
+        console.log(currentSalary);
+        dispatch({ type:UPDATE_SALARY_BEGIN })
+        try {
+            const { data } = await authFetch.patch('profile/salary' , {salaryInfo:currentSalary});
+            const { user, salary , token } = data;
+            
+            console.log(salary);
+
+            dispatch({ 
+                type:UPDATE_SALARY_SUCCESS,
+                payload: { user, salary , token }, 
+            });
+
+            addSalaryToLocalStorage({ salary });
+        } catch (error) {
+            dispatch({
+                type: UPDATE_SALARY_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+
+
     return (
       <AppContext.Provider
         value={{
@@ -184,6 +300,9 @@ const AppProvider = ({ children }) => {
           logoutUser,
           handleChange,
           updateUser,
+          updateHouse,
+          updateBusiness,
+          updateSalary,
         }}
       >
         {children}
