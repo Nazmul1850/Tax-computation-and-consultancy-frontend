@@ -37,6 +37,7 @@ const salary = localStorage.getItem('salary')
 const initialState = {
     isLoading: false,
     showAlert: false,
+    isConsulting:false,
     alertText: '',
     alertType: '',
     user: user ? JSON.parse(user) : null,
@@ -59,6 +60,8 @@ const AppProvider = ({ children }) => {
           Authorization: `Bearer ${state.token}`,
         },
     })
+
+
     const displayAlert = () =>{
         dispatch({type:DISPLAY_ALERT})
         clearAlert()
@@ -186,6 +189,9 @@ const AppProvider = ({ children }) => {
           // no token
           console.log(data)
           const { user, token } = data
+
+          console.log(token)
+          console.log(state.token)
       
           dispatch({
             type: UPDATE_USER_SUCCESS,
@@ -194,6 +200,9 @@ const AppProvider = ({ children }) => {
       
           addUserToLocalStorage({ user, token })
         } catch (error) {
+          if(error.response.data.msg.code === 401) {
+            logoutUser()
+          }
           dispatch({
             type: UPDATE_USER_ERROR,
             payload: { msg: error.response.data.msg.msg },
