@@ -51,7 +51,7 @@ const Profile = () => {
   return (
     <Wrapper>
       <form className='form' onSubmit={handleSubmit}>
-        <h3>profile </h3>
+        <h3>Profile </h3>
         {showAlert && <Alert />}
 
         {/* name */}
