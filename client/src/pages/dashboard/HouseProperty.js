@@ -10,10 +10,11 @@ const initialState = {}
 
 const HouseProperty = () => {
     const [values, setValues] = useState(initialState);
-    const { house,  showAlert, displayAlert, updateUser, updateHouse , isLoading, handleChange } = useAppContext();
+    const { house,  showAlert, displayAlert, updateHouse , isLoading, handleChange } = useAppContext();
 
     const [address , setAddress] = useState(house?.address);
     const [total_area , setTotalArea] = useState(house?.total_area);
+    const [isResident , setIsresident] = useState(house?.isResident);
     const [share , setShare] = useState(house?.share);
     const [annual_value , setAnnualValue] = useState(house?.annual_value);
     const [repair , setRepair] = useState(house?.repair);
@@ -24,6 +25,7 @@ const HouseProperty = () => {
     const [vacancy_allow , setVacancyAllowance] = useState(house?.vacancy_allow);
     const [other , setOther] = useState(house?.other);
     const [other_comment , setOtherComment] = useState(house?.other_comment);
+    const [total_taxable , setTotalTaxable] = useState(house?.total_taxable);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -68,6 +70,14 @@ const HouseProperty = () => {
                 value={total_area}
                 handleChange={(e) => setTotalArea(e.target.value)}
                 labelText=''
+            />
+
+            <FormRow
+                type='number'
+                name='isResident'
+                value={isResident}
+                handleChange={(e) => setIsresident(e.target.value)}
+                labelText='isResident(0 or 1)'
             />
             <FormRow
                 type='number'
@@ -144,6 +154,14 @@ const HouseProperty = () => {
             <button className='btn btn-block' type='submit' disabled={isLoading}>
                 {isLoading ? 'Please Wait...' : 'save changes'}
             </button>
+
+            <FormRow
+                type='number'
+                name='total_taxable'
+                value={total_taxable}
+                // handleChange={(e) => setOtherComment(e.target.value)}
+                labelText='Total Taxable Amount'
+            />
             </div>
         </form>
     </Wrapper>

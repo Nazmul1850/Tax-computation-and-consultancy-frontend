@@ -56,13 +56,12 @@ const Salary = () => {
     const [other_amount , setOtherAmount] = useState(salary?.other_amount);    
     const [other_taxable , setOtherTaxable] = useState(salary?.other_taxable);
     const [other_comment , setOtherComment] = useState(salary?.other_comment);
+    const [total_taxable , setTotalTaxable] = useState(salary?.total_taxable);
 
     const handleSubmit = (e) => {
         console.log(other_comment);
         e.preventDefault();
-        if(!basic_pay_amount || !special_pay_amount || !arrear_pay_amount || !dear_allow_amount || !house_rent_allow_amount || !medi_allow_amount || !conveyance_allow_amount || !festival_allow_amount || !support_staff_allow_amount || !leave_allow_amount || !honour_reward_fee_amount || !overtime_allow_amount || !bonus_ex_gracia_amount || !other_allow_amount || !gratuaty_amount || !workers_part_fund_amount || !ecrp_fund_amount || !iarp_allow_amount || !di_trans_facility_amount || !di_free_accomodation_amount || !other_amount || !other_comment || 
-            !basic_pay_taxable || !special_pay_taxable || !arrear_pay_taxable || !dear_allow_taxable || !house_rent_allow_taxable || !medi_allow_taxable || !conveyance_allow_taxable || !festival_allow_taxable || !support_staff_allow_taxable || !leave_allow_taxable || !honour_reward_fee_taxable || !overtime_allow_taxable || !bonus_ex_gracia_taxable || !other_allow_taxable || !gratuaty_taxable || !workers_part_fund_taxable || !ecrp_fund_taxable || !iarp_allow_taxable || !di_trans_facility_taxable || !di_free_accomodation_taxable || !other_taxable
-            ) {
+        if(!basic_pay_amount) {
           displayAlert();
           return;  
         }
@@ -438,9 +437,20 @@ const Salary = () => {
             <button className='btn btn-block' type='submit' disabled={isLoading}>
                 {isLoading ? 'Please Wait...' : 'save changes'}
             </button>
-            </div>
+
+            <FormRow
+                type='number'
+                name='total_taxable'
+                value={total_taxable}
+                // handleChange={(e) => setOtherComment(e.target.value)}
+                labelText='Total Taxable Amount'
+            />
+            </div> 
         </form>
     </Wrapper>
     )
 }
-export default Salary;
+
+
+
+export default Salary;   
