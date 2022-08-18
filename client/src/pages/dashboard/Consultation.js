@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
-import { Alert, QA } from '../../components'
+import { Alert, QA, ChatBox } from '../../components'
 import Questions from '../../components/Questions'
 import { useAppContext } from '../../context/appContext'
 
@@ -32,7 +32,7 @@ const initQ = {
 
 const Consultation = () => {
     const [values, setValues] = useState(initQ);
-    const {showAlert, isConsulting } = useAppContext();
+    const {supplyMsg, showAlert, isConsulting,saveNewQuestion, getMessages } = useAppContext();
     let questionId = 1;
     console.log(values);
 
@@ -45,17 +45,16 @@ const Consultation = () => {
     const handleNext = (e) => {
         e.preventDefault()
         const answerEls = document.querySelectorAll('.answer') 
-        let answer
-        let text
+        let id
+        let text = []
         answerEls.forEach(answerEl => {
             if(answerEl.checked) {
                 console.log(answerEl)
-                answer = answerEl.id
-                text = answerEl.value
+                id = answerEl.id
+                text.push(answerEl.value)
             }
         })
-        console.log(answer)
-        if(parseInt(answer, 10) === -1) {
+        if(parseInt(id, 10) === -1) {
             
             setTimeout(() => {
                 console.log("waiting")
@@ -64,10 +63,13 @@ const Consultation = () => {
                 return
             },1000)
         }
-        console.log(values.id,values.question,values.tag, text)
+        const qNo = values.id;
+        const question = values.question
+        const tag = values.tag
+        const answer = text;
         let nextQuestion ;
         Questions.forEach(question => {
-            if (question.id === parseInt(answer, 10)) {
+            if (question.id === parseInt(id, 10)) {
                 console.log("Found it")
                 nextQuestion = question;
                 console.log(nextQuestion)        
@@ -75,10 +77,24 @@ const Consultation = () => {
                 values.pre = nextQuestion.pre;
                 values.question = nextQuestion.question;
                 values.optionlist = nextQuestion.optionlist;
+                values.type = nextQuestion.type;
+                if(nextQuestion.type === "select") {
+                    values.inputType = true;
+                }else {
+                    values.inputType = false;
+                }
                 setValues({...values});
                 console.log(values)
             }
+
+            
         });
+
+        console.log(nextQuestion);
+        saveNewQuestion({qNo,question,tag,answer});
+
+        
+        
     }
     
     const handlePre = (e) => {
@@ -94,6 +110,7 @@ const Consultation = () => {
                 values.pre = nextQuestion.pre;
                 values.question = nextQuestion.question;
                 values.optionlist = nextQuestion.optionlist;
+                values.type = nextQuestion.type;
                 setValues({...values});
                 console.log(values)
             }
@@ -114,6 +131,8 @@ const Consultation = () => {
                         optionlist={values.optionlist}
                         type={values.type}
                     />
+
+
                     <div className='q-buttons'>
                         <button className='btn btn-block pre' type='submit' onClick={handlePre}>
                             Pre
@@ -125,7 +144,10 @@ const Consultation = () => {
                 </div>
         }
         {values.isConsulting && 
-            <div>Consultation started</div>
+            <ChatBox 
+                state={supplyMsg}
+                getMessages={getMessages}
+                />
         }
         
         </form>
