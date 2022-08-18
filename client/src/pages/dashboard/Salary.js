@@ -56,6 +56,7 @@ const Salary = () => {
     const [other_amount , setOtherAmount] = useState(salary?.other_amount);    
     const [other_taxable , setOtherTaxable] = useState(salary?.other_taxable);
     const [other_comment , setOtherComment] = useState(salary?.other_comment);
+    const [total_taxable , setTotalTaxable] = useState(salary?.total_taxable);
 
     const handleSubmit = (e) => {
         console.log(other_comment);
@@ -436,9 +437,20 @@ const Salary = () => {
             <button className='btn btn-block' type='submit' disabled={isLoading}>
                 {isLoading ? 'Please Wait...' : 'save changes'}
             </button>
-            </div>
+
+            <FormRow
+                type='number'
+                name='total_taxable'
+                value={total_taxable}
+                // handleChange={(e) => setOtherComment(e.target.value)}
+                labelText='Total Taxable Amount'
+            />
+            </div> 
         </form>
     </Wrapper>
     )
 }
-export default Salary;
+
+
+
+export default Salary;   
