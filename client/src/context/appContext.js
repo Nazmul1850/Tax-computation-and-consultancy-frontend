@@ -25,6 +25,12 @@ import {
     UPDATE_SALARY_BEGIN,
     UPDATE_SALARY_SUCCESS,
     UPDATE_SALARY_ERROR,
+    SAVE_QA_BEGIN,
+    SAVE_QA_SUCCESS,
+    SAVE_QA_ERROR,
+    GET_MSG_BEGIN,
+    GET_MSG_SUCCESS,
+    GET_MSG_ERROR,
 } from "./actions"
 
 
@@ -33,6 +39,8 @@ const user = localStorage.getItem('user')
 const house = localStorage.getItem('house')
 const business = localStorage.getItem('business')
 const salary = localStorage.getItem('salary')
+const currentMsgId = localStorage.getItem('currentMsgId')
+const allMsg = localStorage.getItem('allMsg')
 
 const initialState = {
     isLoading: false,
@@ -44,6 +52,8 @@ const initialState = {
     house: house ? JSON.parse(house) : null,
     business: business ? JSON.parse(business) : null,
     salary: salary ? JSON.parse(salary) : null,
+    currentMsgId: currentMsgId ? JSON.parse(currentMsgId) : null,
+    allMsg: allMsg ? JSON.parse(allMsg) : null,
     token: token,
     showSidebar: false,
 
@@ -83,6 +93,7 @@ const AppProvider = ({ children }) => {
         localStorage.removeItem('house')
         localStorage.removeItem('business')
         localStorage.removeItem('salary')
+        localStorage.removeItem('allMsg')
     }
     
     const addHouseToLocalStorage = ({ house }) => {
@@ -261,6 +272,33 @@ const AppProvider = ({ children }) => {
         clearAlert();
     }
 
+    const saveNewQuestion = async (question) => {
+        dispatch({ type:SAVE_QA_BEGIN })
+        try {
+            const { data } =  await authFetch.patch('/profile/createQA',{question})
+            const { user , token } = data;
+            
+            console.log(data);
+            dispatch({ 
+                type:SAVE_QA_SUCCESS,
+                payload: { user , token }, 
+            });
+
+            
+
+        } catch (error) {
+            console.log(error.response);
+            dispatch({
+                type: SAVE_QA_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+           
+        }
+        clearAlert();
+        return;
+        
+    }
+
 
 
     const updateSalary = async (currentSalary) => {
@@ -288,6 +326,30 @@ const AppProvider = ({ children }) => {
         clearAlert();
     }
 
+    const getMessages = async () => {
+        console.log("getting msg");
+        dispatch({ type:GET_MSG_BEGIN })
+        try {
+        const { data } = await authFetch.get('/showMessage' , currentMsgId);
+            let allReplies=[];
+            const oldReplies = JSON.parse(localStorage.getItem('allMsag'));
+            allReplies.push(oldReplies)
+            const newReplies = data.replies;
+            allReplies.push(newReplies)
+            localStorage.setItem('allMsg',JSON.stringify(allReplies))
+            dispatch({ 
+                type:GET_MSG_SUCCESS,
+            });
+
+        } catch (error) {
+            dispatch({
+                type: GET_MSG_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+
 
     return (
       <AppContext.Provider
@@ -303,6 +365,8 @@ const AppProvider = ({ children }) => {
           updateHouse,
           updateBusiness,
           updateSalary,
+          saveNewQuestion,
+          getMessages,
         }}
       >
         {children}

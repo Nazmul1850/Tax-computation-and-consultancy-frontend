@@ -23,6 +23,12 @@ import {
     UPDATE_SALARY_BEGIN,
     UPDATE_SALARY_SUCCESS,
     UPDATE_SALARY_ERROR,
+    SAVE_QA_BEGIN,
+    SAVE_QA_SUCCESS,
+    SAVE_QA_ERROR,
+    GET_MSG_BEGIN,
+    GET_MSG_SUCCESS,
+    GET_MSG_ERROR,
  } from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -206,6 +212,56 @@ const reducer = (state, action) => {
   }
 
   if (action.type === UPDATE_SALARY_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === SAVE_QA_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === SAVE_QA_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token:action.payload.token,
+      user: action.payload.user,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Question Saved',
+    }
+  }
+
+  if (action.type === SAVE_QA_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === GET_MSG_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === GET_MSG_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Message Recieved',
+    }
+  }
+
+  if (action.type === GET_MSG_ERROR) {
     return {
       ...state,
       isLoading: false,
