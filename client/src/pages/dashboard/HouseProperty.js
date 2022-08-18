@@ -10,7 +10,7 @@ const initialState = {}
 
 const HouseProperty = () => {
     const [values, setValues] = useState(initialState);
-    const { house,  showAlert, displayAlert, updateUser, updateHouse , isLoading, handleChange } = useAppContext();
+    const { house,  showAlert, displayAlert, updateHouse , isLoading, handleChange } = useAppContext();
 
     const [address , setAddress] = useState(house?.address);
     const [total_area , setTotalArea] = useState(house?.total_area);
