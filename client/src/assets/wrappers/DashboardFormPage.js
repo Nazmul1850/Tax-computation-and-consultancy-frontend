@@ -9,6 +9,10 @@ const Wrapper = styled.section`
   h3 {
     margin-top: 0;
   }
+  h1 {
+    margin-top: 0;
+    text-align : center;
+  }
   .form {
     margin: 0;
     border-radius: 0;
@@ -18,10 +22,12 @@ const Wrapper = styled.section`
     width: 100%;
   }
   .form-row {
-    margin-bottom: 0;
+    display: inline-flex;
+}
   }
   .form-center {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     row-gap: 0.5rem;
   }
   .q-center {
