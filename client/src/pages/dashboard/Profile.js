@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import {FormRow,Alert, FormRowSelect} from '../../components'
-import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
+import { Alert, FormRow, FormRowSelect } from '../../components'
+import { useAppContext } from '../../context/appContext'
 
 const initialState = {
       genderOptions:['', 'Male','Female','Others'],
@@ -39,7 +39,7 @@ const Profile = () => {
       return;  
     }
 
-    updateUser({ name, email, gender, phone, birthdate, address, circle, zone, resident, citizen_type,  tin, nid })
+    updateUser({parentId:"6305b321cc130702c2307a0e", name, email, gender, phone, birthdate, address, circle, zone, resident, citizen_type,  tin, nid })
   }
 
   const handleChangeState = (e) => {
