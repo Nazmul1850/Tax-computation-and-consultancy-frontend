@@ -340,6 +340,12 @@ const Consultation = () => {
                 </div>
             </div>
 
+            <FileUpload 
+                getsingle = { () => getSingleFileslist()}
+            />
+
+            <button className='btn btn-block' onClick={toggleConsultation}>Reload Consultation</button>
+
         </>
         }
         

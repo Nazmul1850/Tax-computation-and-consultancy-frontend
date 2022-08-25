@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
+import React, { useState } from 'react';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './FileUpload.css';
 
-import { useAppContext } from '../context/appContext'
+import './FileUpload.css';
+
+import { useAppContext } from '../context/appContext';
 
 const initialState = {
     singleFile : '',
@@ -72,13 +74,13 @@ const FileUpload = (props) => {
                     <div className="col-10">
                         <button type="button" className="uploadBtn" onClick={() => uploadSingleFile()}  >Upload</button>
                     </div>
-                    <div className="col-2" style={{width:"7%"}}>
+                    <div className="col-2" style={{width : '7%'}}>
                         <CircularProgressbar
                             value={singleProgress}
                             text={`${singleProgress}%`}
                             styles={buildStyles({
                                 display: 'flex',
-                                
+
                                 rotation: 0.25,
                                 
                                 strokeLinecap: 'butt',
