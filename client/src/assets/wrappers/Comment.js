@@ -29,7 +29,7 @@ const Wrapper = styled.aside`
     .comment-form-button {
     font-size: 16px;
     padding: 8px 16px;
-    background: rgb(59, 130, 246);
+    background: var(--primary-500);
     border-radius: 8px;
     color: white;
     }
