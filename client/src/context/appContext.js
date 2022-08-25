@@ -367,6 +367,22 @@ const AppProvider = ({ children }) => {
         clearAlert();
     }
 
+    const singleFileUpload = async (data, options) => {
+        try {
+            await authFetch.post('singleFile', data, options);
+        } catch (error) {
+            throw error;
+        }
+    }
+    const getSingleFiles = async () => {
+        try {
+            const {data} = await authFetch.get('getSingleFiles');
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
     return (
       <AppContext.Provider
@@ -384,6 +400,8 @@ const AppProvider = ({ children }) => {
           updateSalary,
           saveNewQuestion,
           getMessages,
+          singleFileUpload,
+          getSingleFiles
           saveMsg,
         }}
       >

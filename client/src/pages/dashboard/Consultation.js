@@ -10,6 +10,7 @@ import { Alert, QA, Comment, CommentForm } from '../../components'
 
 import Questions from '../../components/Questions'
 import { useAppContext } from '../../context/appContext'
+import FileUpload from '../../components/FileUpload'
 
 
 const isConsulting = JSON.parse(localStorage.getItem('isConsulting'))
@@ -42,7 +43,11 @@ const initQ = {
 
 
 const Consultation = () => {
+    const [singleFiles, setSingleFiles] = useState([]);
     const [values, setValues] = useState(initQ);
+    
+    const {supplyMsg, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles } = useAppContext();
+    
     const [backendComments, setBackendComments] = useState([]);
     const [rootComments, setrootComments] = useState([]);
     const [activeComment, setActiveComment] = useState(null);
@@ -51,9 +56,16 @@ const Consultation = () => {
     const {showAlert , saveNewQuestion } = useAppContext();
     console.log("From values")
     console.log(values.isConsulting);
-
     let questionId = 1;
 
+    const getSingleFileslist = async () => {
+        try {
+            const fileslist = await getSingleFiles();
+            setSingleFiles(fileslist);
+        } catch (error) {
+          console.log(error);
+        }
+    }
 
     const handleChangeState = (e) => {
         setValues({...values, [e.target.name]:e.target.value})
@@ -148,6 +160,10 @@ const Consultation = () => {
         e.preventDefault()
         // const { gender, phone } = values
     }
+    
+    useEffect(() => {
+        getSingleFileslist();
+    }, []);
 
     console.log('Backend Comments', backendComments);
 
@@ -300,6 +316,7 @@ const Consultation = () => {
             </form>
         }
         {values.isConsulting && 
+
         <>
             <div className='comments'>
                 <h3 className="comments-title">Comments</h3>
@@ -325,7 +342,6 @@ const Consultation = () => {
             </div>
 
         </>
-
         }
         
         
