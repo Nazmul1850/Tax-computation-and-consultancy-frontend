@@ -4,6 +4,7 @@ import Wrapper from '../../assets/wrappers/DashboardFormPage'
 import { Alert, QA, ChatBox } from '../../components'
 import Questions from '../../components/Questions'
 import { useAppContext } from '../../context/appContext'
+import FileUpload from '../../components/FileUpload'
 
 
 
@@ -129,6 +130,7 @@ const Consultation = () => {
         e.preventDefault()
         // const { gender, phone } = values
     }
+    
     useEffect(() => {
         getSingleFileslist();
     }, []);

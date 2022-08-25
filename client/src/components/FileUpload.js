@@ -1,17 +1,23 @@
 import React, {useState, useEffect} from 'react';
-//import {singleFileUpload, multipleFilesUpload} from '../data/api';
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import { useAppContext } from '../context/appContext'
 
+const initialState = {
+    singleFile : '',
+    multipleFiles: '',
+    title: '',
+    singleProgress: 0,
+    multipleProgress: 0
+}
 
 const FileUpload = (props) => {
-    const [singleFile, setSingleFile] = useState('');
-    const [multipleFiles, setMultipleFiles] = useState('');
-    const [title, setTitle] =  useState('');
-    const [singleProgress, setSingleProgress] = useState(0);
-    const [multipleProgress, setMultipleProgress] = useState(0);
+    const [singleFile, setSingleFile] = useState(initialState);
+    const [multipleFiles, setMultipleFiles] = useState(initialState);
+    const [title, setTitle] =  useState(initialState);
+    const [singleProgress, setSingleProgress] = useState(initialState);
+    const [multipleProgress, setMultipleProgress] = useState(initialState);
 
     const { singleFileUpload } =  useAppContext();
 
@@ -43,15 +49,15 @@ const FileUpload = (props) => {
         await singleFileUpload(formData, singleFileOptions);
         props.getsingle();
     }
-    const UploadMultipleFiles = async () => {
-        const formData = new FormData();
-        formData.append('title', title);
-        for (let i = 0; i < multipleFiles.length; i++) {
-            formData.append('files', multipleFiles[i]);                      
-        }
-        await multipleFilesUpload(formData, mulitpleFileOptions);
-        props.getMultiple();
-    }
+    // const UploadMultipleFiles = async () => {
+    //     const formData = new FormData();
+    //     formData.append('title', title);
+    //     for (let i = 0; i < multipleFiles.length; i++) {
+    //         formData.append('files', multipleFiles[i]);                      
+    //     }
+    //     await multipleFilesUpload(formData, mulitpleFileOptions);
+    //     props.getMultiple();
+    // }
     return (
         <div className="row mt-3">
             <div className="col-6">
