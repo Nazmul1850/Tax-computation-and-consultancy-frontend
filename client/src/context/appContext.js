@@ -45,7 +45,6 @@ const allMsg = localStorage.getItem('allMsg')
 const initialState = {
     isLoading: false,
     showAlert: false,
-    isConsulting:false,
     alertText: '',
     alertType: '',
     user: user ? JSON.parse(user) : null,
@@ -72,6 +71,7 @@ const AppProvider = ({ children }) => {
     })
 
 
+
     const displayAlert = () =>{
         dispatch({type:DISPLAY_ALERT})
         clearAlert()
@@ -94,6 +94,8 @@ const AppProvider = ({ children }) => {
         localStorage.removeItem('business')
         localStorage.removeItem('salary')
         localStorage.removeItem('allMsg')
+        localStorage.removeItem('isConsulting')
+
     }
     
     const addHouseToLocalStorage = ({ house }) => {
@@ -145,6 +147,12 @@ const AppProvider = ({ children }) => {
         }
         clearAlert() 
     }
+
+    const saveMsg = async (currentMsg) => {
+        console.log(currentMsg);
+        await authFetch.post('sendMessage',currentMsg);
+    }
+
     const loginUser = async (currentUser) => {
         dispatch({type:LOGIN_USER_BEGIN})
         try {
@@ -376,6 +384,7 @@ const AppProvider = ({ children }) => {
           updateSalary,
           saveNewQuestion,
           getMessages,
+          saveMsg,
         }}
       >
         {children}
