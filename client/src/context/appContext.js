@@ -95,6 +95,7 @@ const AppProvider = ({ children }) => {
         localStorage.removeItem('salary')
         localStorage.removeItem('allMsg')
         localStorage.removeItem('isConsulting')
+
     }
     
     const addHouseToLocalStorage = ({ house }) => {

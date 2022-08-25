@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from 'react-scroll';
 import Wrapper from '../assets/wrappers/QaBox';
@@ -40,7 +41,6 @@ const NewMessage = ({type,name}) => {
                 />
                 <button type="submit" >Submit</button>
             </form>
-            
         </Wrapper>
   )
 }

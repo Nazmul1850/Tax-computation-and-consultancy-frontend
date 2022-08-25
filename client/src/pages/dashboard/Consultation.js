@@ -5,7 +5,9 @@ import CreateThread from '../../apis/createThread'
 import DeleteComment from '../../apis/deleteComment'
 import UpdateComment from '../../apis/updateComment'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
+
 import { Alert, QA, Comment, CommentForm } from '../../components'
+
 import Questions from '../../components/Questions'
 import { useAppContext } from '../../context/appContext'
 
@@ -49,6 +51,7 @@ const Consultation = () => {
     const {showAlert , saveNewQuestion } = useAppContext();
     console.log("From values")
     console.log(values.isConsulting);
+
     let questionId = 1;
 
 
@@ -322,6 +325,7 @@ const Consultation = () => {
             </div>
 
         </>
+
         }
         
         

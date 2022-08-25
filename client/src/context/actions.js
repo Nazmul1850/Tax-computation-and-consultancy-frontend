@@ -42,6 +42,3 @@ export const GET_MSG_BEGIN= 'GET_MSG_BEGIN'
 export const GET_MSG_SUCCESS = 'GET_MSG_SUCCESS'
 export const GET_MSG_ERROR = 'GET_MSG_ERROR'
 
-
-
-
