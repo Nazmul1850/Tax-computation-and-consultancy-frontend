@@ -53,7 +53,6 @@ const Consultation = () => {
     const [activeComment, setActiveComment] = useState(null);
     const currentUserId = user._id;
     console.log(currentUserId);
-    const {showAlert , saveNewQuestion } = useAppContext();
     console.log("From values")
     console.log(values.isConsulting);
     let questionId = 1;
@@ -340,6 +339,12 @@ const Consultation = () => {
                 ))}
                 </div>
             </div>
+
+            <FileUpload 
+                getsingle = { () => getSingleFileslist()}
+            />
+
+            <button className='btn btn-block' onClick={toggleConsultation}>Reload Consultation</button>
 
         </>
         }
