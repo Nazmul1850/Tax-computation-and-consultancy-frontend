@@ -1,0 +1,5 @@
+.uploadBtn {
+  height: max-content;
+  margin-top: 50%;
+  background: var(--primary-100);
+}

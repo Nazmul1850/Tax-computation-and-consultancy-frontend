@@ -63,6 +63,7 @@ const Register = () => {
                         name='name'
                         value={values.name}
                         handleChange={handleChange}
+                        isPro='false'
                     />
                 )}
                 <FormRow
@@ -70,12 +71,14 @@ const Register = () => {
                     name='email'
                     value={values.email}
                     handleChange={handleChange}
+                    isPro='false'
                 />
                 <FormRow
                     type='password'
                     name='password'
                     value={values.password}
                     handleChange={handleChange}
+                    isPro='false'
                 />
 
                 <button type='submit' className='btn btn-block' disabled={isLoading}>

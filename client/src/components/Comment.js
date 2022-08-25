@@ -39,7 +39,7 @@ const Comment = ({
                 </div>
                 <div className="comment-right-part">
                     <div className="comment-content">
-                        <div className="comment-author">{comment.sender}</div>
+                        <div className="comment-author">{comment.senderName}</div>
                         <div>{time}</div>
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}
