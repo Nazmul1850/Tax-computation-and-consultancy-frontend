@@ -401,7 +401,7 @@ const AppProvider = ({ children }) => {
           saveNewQuestion,
           getMessages,
           singleFileUpload,
-          getSingleFiles
+          getSingleFiles,
           saveMsg,
         }}
       >

@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { useState } from 'react';
-import Wrapper from '../assets/wrappers/DashboardFormPage';
 
 
 
@@ -16,10 +14,12 @@ const getComments = async ({token}) => {
           Authorization: `Bearer ${token}`,
         },
     })
-
+    const comment = {
+      
+    }
     
     try {
-        const { data } =  await authFetch.get('/showMessage')
+        const { data } =  await authFetch.post('/showMessage', {comment})
         const comments = data.replies;
         
         return comments;
