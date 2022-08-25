@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 import { Alert, QA, ChatBox } from '../../components'
 import Questions from '../../components/Questions'
@@ -31,11 +31,20 @@ const initQ = {
 
 
 const Consultation = () => {
+    const [singleFiles, setSingleFiles] = useState([]);
     const [values, setValues] = useState(initQ);
-    const {supplyMsg, showAlert, isConsulting,saveNewQuestion, getMessages } = useAppContext();
+    const {supplyMsg, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles } = useAppContext();
     let questionId = 1;
     console.log(values);
 
+    const getSingleFileslist = async () => {
+        try {
+            const fileslist = await getSingleFiles();
+            setSingleFiles(fileslist);
+        } catch (error) {
+          console.log(error);
+        }
+    }
 
     const handleChangeState = (e) => {
         setValues({...values, [e.target.name]:e.target.value})
@@ -120,6 +129,9 @@ const Consultation = () => {
         e.preventDefault()
         // const { gender, phone } = values
     }
+    useEffect(() => {
+        getSingleFileslist();
+    }, []);
     return (
         <Wrapper>
         <form className='form' onSubmit={handleSubmit}>
@@ -147,7 +159,10 @@ const Consultation = () => {
             <ChatBox 
                 state={supplyMsg}
                 getMessages={getMessages}
-                />
+                /> &&
+                <FileUpload
+                getsingle={() => getSingleFileslist()}
+                 />
         }
         
         </form>
