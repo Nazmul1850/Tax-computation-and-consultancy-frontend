@@ -6,6 +6,7 @@ import Salary from "./Salary";
 import Business from "./Business";
 import Investment from "./Investment";
 import HouseProperty from "./HouseProperty";
+import Files from "./Files";
 export {
     Profile,
     Calculator,
@@ -14,5 +15,6 @@ export {
     Business,
     Investment,
     HouseProperty,
-    SharedLayout
+    SharedLayout,
+    Files,
 }

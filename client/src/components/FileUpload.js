@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import './FileUpload.css';
 
 import { useAppContext } from '../context/appContext'
 
@@ -16,7 +17,7 @@ const FileUpload = (props) => {
     const [singleFile, setSingleFile] = useState(initialState);
     const [multipleFiles, setMultipleFiles] = useState(initialState);
     const [title, setTitle] =  useState(initialState);
-    const [singleProgress, setSingleProgress] = useState(initialState);
+    const [singleProgress, setSingleProgress] = useState('0');
     const [multipleProgress, setMultipleProgress] = useState(initialState);
 
     const { singleFileUpload } =  useAppContext();
@@ -49,6 +50,7 @@ const FileUpload = (props) => {
         await singleFileUpload(formData, singleFileOptions);
         props.getsingle();
     }
+    
     // const UploadMultipleFiles = async () => {
     //     const formData = new FormData();
     //     formData.append('title', title);
@@ -59,6 +61,7 @@ const FileUpload = (props) => {
     //     props.getMultiple();
     // }
     return (
+        
         <div className="row mt-3">
             <div className="col-6">
                 <div className="form-group">
@@ -67,21 +70,25 @@ const FileUpload = (props) => {
                 </div>
                 <div className="row">
                     <div className="col-10">
-                        <button type="button" className="btn btn-danger" onClick={() => uploadSingleFile()} >Upload</button>
+                        <button type="button" className="uploadBtn" onClick={() => uploadSingleFile()}  >Upload</button>
                     </div>
-                    <div className="col-2">
+                    <div className="col-2" style={{width:"7%"}}>
                         <CircularProgressbar
                             value={singleProgress}
                             text={`${singleProgress}%`}
                             styles={buildStyles({
+                                display: 'flex',
+                                
                                 rotation: 0.25,
+                                
                                 strokeLinecap: 'butt',
-                                textSize: '16px',
+                                textSize: '5px',
                                 pathTransitionDuration: 0.5,
                                 pathColor: `rgba(255, 136, 136, ${singleProgress / 100})`,
                                 textColor: '#f88',
                                 trailColor: '#d6d6d6',
                                 backgroundColor: '#3e98c7',
+                                
                             })}
                         />
                     </div>
