@@ -7,17 +7,17 @@ import { HouseContainer } from '../../components';
 import './AllHouse.css'
 
 
-const token = localStorage.getItem('token');
-const user = JSON.parse(localStorage.getItem('user'))
+
 
 
 const AllHouse = () => {
-    const { logoutUser } = useAppContext();
+
+    const { logoutUser , token } = useAppContext();
     const [myHouse, setMyHouse] = useState([]);
 
 
     //getAllHouse({token,currentUserId});
-
+    console.log("from all house",token)
     useEffect(() => {
         getAllHouse({token,logoutUser}).then((datas)=>{
             console.log(datas);
