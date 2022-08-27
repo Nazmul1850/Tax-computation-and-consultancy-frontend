@@ -77,7 +77,7 @@ const Consultation = () => {
             let tempC = JSON.parse(localStorage.getItem('isConsulting'));
             console.log(tempC)
             tempC = !tempC;
-            setValues({...values, isConsulting:tempC})
+            setValues({...values, isConsulting:tempC, "id":0})
             console.log(tempC)
             localStorage.setItem('isConsulting',JSON.stringify(tempC))
             
