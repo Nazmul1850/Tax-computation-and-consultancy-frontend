@@ -5,6 +5,7 @@ import FormRowSelect from './FormRowSelect'
 import QA from './QaBox'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
+import HouseContainer from './HouseContainer'
 
-export {Logo, FormRow, Alert, FormRowSelect, QA,Comment, CommentForm}
+export {Logo, FormRow, Alert, FormRowSelect, QA,Comment, CommentForm , HouseContainer}
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {FormRow,Alert, FormRowSelect} from '../../components'
+import { FormRow,Alert } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
@@ -55,6 +55,7 @@ const Business = () => {
                 value={name}
                 handleChange={(e) => setName(e.target.value)}
                 labelText='Business or Profession'
+                hoverText=''
             />
             <FormRow
                 type='text'
@@ -62,6 +63,7 @@ const Business = () => {
                 value={address}
                 handleChange={(e) => setAddress(e.target.value)}
                 labelText='Address'
+                hoverText=''
             />
             <FormRow
                 type='number'
@@ -69,6 +71,7 @@ const Business = () => {
                 value={sales_turnover}
                 handleChange={(e) => setSalesTurnOver(e.target.value)}
                 labelText='Sales/ Turnover/ Receipts'
+                hoverText=''
             />
             <FormRow                
                 type='number'
@@ -76,6 +79,7 @@ const Business = () => {
                 value={gross_profit}
                 handleChange={(e) => setGrossProfit(e.target.value)}
                 labelText='Gross Profit'
+                hoverText=''
                 
             />
             <FormRow
@@ -84,6 +88,7 @@ const Business = () => {
                 value={gen_admin_sel_other_expense}
                 handleChange={(e) => setGeneralAdminSell(e.target.value)}
                 labelText='General, administrative, selling and other expenses'
+                hoverText=''
             />
             <FormRow
                 type='number'
@@ -91,6 +96,7 @@ const Business = () => {
                 value={cash_hand_bank}
                 handleChange={(e) => setCashInHandnBank(e.target.value)}
                 labelText='Cash in hand & at bank'
+                hoverText=''
             />
             <FormRow
                 type='number'
@@ -98,6 +104,7 @@ const Business = () => {
                 value={inventories}
                 handleChange={(e) => setInventories(e.target.value)}
                 labelText='Inventories'
+                hoverText=''
             />
             <FormRow
                 type='number'
@@ -105,6 +112,7 @@ const Business = () => {
                 value={fixed_assets}
                 handleChange={(e) => setFixedAssets(e.target.value)}
                 labelText='Fixed Assets'
+                hoverText=''
             />
             <FormRow
                 type='number'
@@ -112,6 +120,7 @@ const Business = () => {
                 value={other_assets}
                 handleChange={(e) => setOtherAssets(e.target.value)}
                 labelText='Other Assets'
+                hoverText=''
             />
             <FormRow
                 type='number'
@@ -119,6 +128,7 @@ const Business = () => {
                 value={opening_capital}
                 handleChange={(e) => setOpeningCapital(e.target.value)}
                 labelText='Opening capital'
+                hoverText=''
             />
             <FormRow
                 labelText='Withdrawals in the income year'
@@ -126,6 +136,7 @@ const Business = () => {
                 name='withdraw_income_year'
                 value={withdraw_income_year}
                 handleChange={(e) => setWithDraw(e.target.value)}
+                hoverText=''
                 
             />
             <FormRow

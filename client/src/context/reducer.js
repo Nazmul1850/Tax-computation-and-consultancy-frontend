@@ -23,6 +23,9 @@ import {
     UPDATE_SALARY_BEGIN,
     UPDATE_SALARY_SUCCESS,
     UPDATE_SALARY_ERROR,
+    UPDATE_INVESTMENT_BEGIN,
+    UPDATE_INVESTMENT_SUCCESS,
+    UPDATE_INVESTMENT_ERROR,
     SAVE_QA_BEGIN,
     SAVE_QA_SUCCESS,
     SAVE_QA_ERROR,
@@ -186,6 +189,34 @@ const reducer = (state, action) => {
   }
 
   if (action.type === UPDATE_BUSINESS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+
+  if (action.type === UPDATE_INVESTMENT_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_INVESTMENT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token:action.payload.token,
+      user: action.payload.user,
+      investment: action.payload.investment,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Investment Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_INVESTMENT_ERROR) {
     return {
       ...state,
       isLoading: false,

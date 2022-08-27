@@ -40,6 +40,12 @@ const links = [
       icon: <GiFamilyHouse />,
     },
     {
+      id: 8,
+      text: 'allhouse',
+      path: 'allhouse',
+      icon: <GiFamilyHouse />,
+    },
+    {
       id: 2,
       text: 'Consultation',
       path: 'consultation',

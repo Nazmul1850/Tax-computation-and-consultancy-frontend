@@ -4,7 +4,7 @@ import React from "react";
 
 import { BrowserRouter as Router,Routes, Switch, Route } from 'react-router-dom'
 import {Register, Error} from "./pages";
-import {Profile, SharedLayout, Calculator, Consultation, Salary, Investment, Business, HouseProperty } from './pages/dashboard'
+import {Profile, SharedLayout, Calculator, Consultation, Salary, Investment, Business, HouseProperty , AllHouse } from './pages/dashboard'
 import Protectedroute from "./pages/Protectedroute";
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
           <Route path='business' element={<Business />}></Route>
           <Route path='investment' element={<Investment />}></Route>
           <Route path='house' element={<HouseProperty />}></Route>
+          <Route path='allhouse' element={<AllHouse />}></Route>
           <Route path='profile' element={<Profile />}></Route>
           <Route path='consultation' element={<Consultation />}></Route>
           <Route  index element={<Calculator />}></Route>

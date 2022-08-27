@@ -38,6 +38,8 @@ const Salary = () => {
     const [other_comment , setOtherComment] = useState(salary?.other_comment);
     const [total_taxable , setTotalTaxable] = useState(salary?.total_taxable);
 
+
+
     const handleSubmit = (e) => {
         console.log(other_comment);
         e.preventDefault();
@@ -75,7 +77,7 @@ const Salary = () => {
                 value={basic_pay_amount}
                 handleChange={(e) => setBasicPayAmount(e.target.value)}
                 labelText='Basic Pay(amount)'
-                hoverText="the amount of money that an employee receives prior to any extras being added or payments deducted"
+                hoverText="কোনো অতিরিক্ত অর্থ যোগ করার আগে বা পেমেন্ট কেটে নেওয়ার আগে একজন কর্মচারী যে পরিমাণ অর্থ পান । সম্পূর্ণ অংক করযোগ্য। "
             />
             
 
@@ -85,7 +87,7 @@ const Salary = () => {
                 value={special_pay_amount}
                 handleChange={(e) => setSpecialPayAmount(e.target.value)}
                 labelText='Special Pay(amount)'
-                hoverText=''
+                hoverText='সম্পূর্ণ অংক করযোগ্য।'
                 
             />
             
@@ -97,7 +99,7 @@ const Salary = () => {
                 value={arrear_pay_amount}
                 handleChange={(e) => setArrearPayAmount(e.target.value)}
                 labelText='Arrear Pay(amount)'
-                hoverText='any portion of Property Taxes that remain unpaid after the date on which they are due.'
+                hoverText='সম্পত্তি করের যে কোনো অংশ যে তারিখের পরে তাদের পরিশোধ করা হয় না। সম্পূর্ণ পরিমাণ করযোগ্য।'
             />
            
             
@@ -108,7 +110,7 @@ const Salary = () => {
                 value={dear_allow_amount}
                 handleChange={(e) => setDearnessAllowanceAmount(e.target.value)}
                 labelText='Dearness Allowance(amount)'
-                hoverText='the cost-of-living adjustment allowance which the government pays to the employees of the public sector as well as pensioners of the same'
+                hoverText='জীবনযাত্রার ব্যয়-সমন্বয় ভাতা যা সরকার সরকারী সেক্টরের কর্মচারীদের পাশাপাশি পেনশনভোগীদের প্রদান করে। সম্পূর্ণ পরিমাণ করযোগ্য।'
             />
            
             
@@ -119,7 +121,7 @@ const Salary = () => {
                 value={house_rent_allow_amount}
                 handleChange={(e) => setHouseRentAllowanceAmount(e.target.value)}
                 labelText='House Rent Allowance(amount)'
-                hoverText=''
+                hoverText='মূল বেতনের ৫০% অথবা মাসিক  ২৫,০০০/- এ দুটির মধ্যে যেটি কম সেটি করমুক্ত  '
             />
            
             
@@ -130,7 +132,7 @@ const Salary = () => {
                 value={medi_allow_amount}
                 handleChange={(e) => setMedicalAllowanceAmount(e.target.value)}
                 labelText='Medical Allowance(amount)'
-                hoverText=''
+                hoverText='মূল বেতনের  ১০% অথবা বার্ষিক  ১,২০,০০০/- টাকা (প্রতিবন্ধী ব্যক্তির ক্ষেত্রে ১০ লক্ষ  টাকা), এ দুটির মধ্যে যেটি  কম সে পরিমাণ অর্থ করমুক্ত '
             />
             
             
@@ -141,7 +143,7 @@ const Salary = () => {
                 value={conveyance_allow_amount}
                 handleChange={(e) => setConveyanceAllowanceAmount(e.target.value)}
                 labelText='Conveyance Allowance(amount)'
-                hoverText=''
+                hoverText='যাতায়াত ভাতা । বার্ষিক ৩০,০০০/-  পর্যন্ত করমুক্ত  । '
             />
            
             
@@ -152,7 +154,7 @@ const Salary = () => {
                 value={festival_allow_amount}
                 handleChange={(e) => setFestivalAllowanceAmount(e.target.value)}
                 labelText='Festival Allowance(amount)'
-                hoverText=''
+                hoverText='সম্পূর্ণ অংক করযোগ্য।'
             />
            
             
@@ -163,7 +165,7 @@ const Salary = () => {
                 value={support_staff_allow_amount}
                 handleChange={(e) => setSupportStaffAllowanceAmount(e.target.value)}
                 labelText='Allowance for support staff(amount)'
-                hoverText=''
+                hoverText='পরিচারক ভাতা। সম্পূর্ণ অংক করযোগ্য।'
             />
             
             
@@ -174,7 +176,7 @@ const Salary = () => {
                 value={leave_allow_amount}
                 handleChange={(e) => setLeaveAllowanceAmount(e.target.value)}
                 labelText='Leave Allowance(amount)'
-                hoverText=''
+                hoverText='ছুটি ভাতা । সম্পূর্ণ অংক করযোগ্য।'
             />
 
            
@@ -186,7 +188,7 @@ const Salary = () => {
                 value={honour_reward_fee_amount}
                 handleChange={(e) => setHonourRewardFeeAmount(e.target.value)}
                 labelText='Honorarium/ Reward/Fee(amount)'
-                hoverText=''
+                hoverText='সম্মানী বা পুরষ্কার ফি । সম্পূর্ণ অংক করযোগ্য।'
             />
             
             
@@ -197,7 +199,7 @@ const Salary = () => {
                 value={overtime_allow_amount}
                 handleChange={(e) => setOvertimeAllowanceAmount(e.target.value)}
                 labelText='Overtime Allowance(amount)'
-                hoverText=''
+                hoverText='সম্পূর্ণ অংক করযোগ্য।'
             />
            
             
@@ -208,7 +210,7 @@ const Salary = () => {
                 value={bonus_ex_gracia_amount}
                 handleChange={(e) => setBonusAmount(e.target.value)}
                 labelText='Bonus / Ex-gratia(amount)'
-                hoverText=''
+                hoverText='বোনাস বা এক্স-গ্রেসিয়া । সম্পূর্ণ অংক করযোগ্য।'
             />
            
             
@@ -219,7 +221,7 @@ const Salary = () => {
                 value={other_allow_amount}
                 handleChange={(e) => setOtherAllowanceAmount(e.target.value)}
                 labelText='Other Allowance(amount)'
-                hoverText=''
+                hoverText='সম্পূর্ণ অংক করযোগ্য।'
             />
             
             
@@ -230,7 +232,7 @@ const Salary = () => {
                 value={gratuaty_amount}
                 handleChange={(e) => setGratuatyAmount(e.target.value)}
                 labelText='Gratuaty(amount)'
-                hoverText=''
+                hoverText='২ কোটি ৫০ লক্ষ টাকার অতিরিক্ত অংক করযোগ্য '
             />
             
             
@@ -241,7 +243,7 @@ const Salary = () => {
                 value={workers_part_fund_amount}
                 handleChange={(e) => setWorkersPartFundAmount(e.target.value)}
                 labelText='Workers Participation Fund(amount)'
-                hoverText=''
+                hoverText='Workers’ Participation Fund থেকে  কোন ব্যক্তি কর্তৃক  ৫০,০০০/-  টাকা পর্যন্ত প্রাপ্ত অর্থ করমুক্ত । '
             />
             
             
@@ -252,7 +254,7 @@ const Salary = () => {
                 value={ecrp_fund_amount}
                 handleChange={(e) => setEcrpFundAmount(e.target.value)}
                 labelText='Employer’s contribution to a recognized provident fund(amount)'
-                hoverText=''
+                hoverText='সম্পূর্ণ অংক করযোগ্য।'
             />
            
             
@@ -263,7 +265,7 @@ const Salary = () => {
                 value={iarp_allow_amount}
                 handleChange={(e) => setIarpFundAmount(e.target.value)}
                 labelText='Interest accrued on a recognized provident fund(amount)'
-                hoverText=''
+                hoverText='মুল বেতনের ১/৩ অংশ পর্যন্ত সুদ ( এখানে বেতন বলতে মুল বেতন ও মহার্ঘ ভাতা বুঝাবে ) অথবা সরকার কর্তৃক নির্ধারিত হার ১৪. ৫০% , এ দুয়ের মধ্যে যেটি কম সেটি করমুক্ত । '
             />
             
             
@@ -274,7 +276,7 @@ const Salary = () => {
                 value={di_trans_facility_amount}
                 handleChange={(e) => setDeemIncTransportAmount(e.target.value)}
                 labelText='Deemed income for transport facility(amount)'
-                hoverText=''
+                hoverText='যদি করদাতা ব্যক্তিগত ব্যবহারের জন্য নিয়োগকর্তার নিকট থেকে গাড়ী পান তাহলে মুল বেতনের ৫% বা বার্ষিক ৬০,০০০/- টাকা (দুটির  মধ্যে যেটি বেশি ) সরাসরি নীট করযোগ্য আয় হবে । '
             />
            
             
@@ -285,7 +287,7 @@ const Salary = () => {
                 value={di_free_accomodation_amount}
                 handleChange={(e) => setDeemIncFreeAmount(e.target.value)}
                 labelText='Deemed income for free furnished/unfurnished accommodation(amount)'
-                hoverText=''
+                hoverText='করদাতা নিয়োগকর্তা কর্তৃক প্রদত্ত বিনা ভাড়ায় বাস করলে মুল বেতনের ২৫% করযোগ্য হবে । হ্রাসকৃত  ভাড়া হলে মুল বেতনের ২৫% হতে ভাড়া বাদ দিয়ে বাকিটা করযোগ্য । '
             />
             
             
@@ -296,7 +298,7 @@ const Salary = () => {
                 value={other_amount}
                 handleChange={(e) => setOtherAmount(e.target.value)}
                 labelText='Other(amount)'
-                hoverText=''
+                hoverText='করদাতা নিয়োগকর্তা কর্তৃক প্রদত্ত বাসস্থানে কোন সুযোগ সুবিধা(দাড়োয়ান , মালি  , ...) পান , তবে প্রাপ্ত সুবিধার সমপরিমাণ অর্থ প্রদান করতে হবে ।  '
             />
             
 
@@ -307,6 +309,7 @@ const Salary = () => {
                 handleChange={(e) => setOtherComment(e.target.value)}
                 labelText='Other comment'
                 hoverText=''
+                isPro='false'
             />
             
 
@@ -322,6 +325,7 @@ const Salary = () => {
                 value={total_taxable}
                 // handleChange={(e) => setOtherComment(e.target.value)}
                 labelText='Total Taxable Amount'
+                hoverText='মোট করযোগ্য টাকা ।'
             />
             </div> 
         </form>
