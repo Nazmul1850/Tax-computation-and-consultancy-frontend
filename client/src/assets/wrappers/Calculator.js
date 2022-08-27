@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.nav`
-  height: var(--nav-height);
+const Wrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
   box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);
-  z-index: 100;
   .logo {
     display: flex;
     align-items: center;
@@ -28,7 +27,7 @@ const Wrapper = styled.nav`
     align-items: center;
   }
   background: var(--white);
-  .btn-container {
+  .asees-container {
     position: relative;
   }
   .btn {
@@ -43,8 +42,9 @@ const Wrapper = styled.nav`
   .dropdown {
     position: absolute;
     top: 40px;
-    left: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     background: var(--primary-100);
     box-shadow: var(--shadow-2);
     padding: 0.5rem;
@@ -63,23 +63,12 @@ const Wrapper = styled.nav`
     text-transform: capitalize;
     cursor: pointer;
   }
-  .logo-text {
-    display: none;
-    margin: 0;
-  }
-  @media (min-width: 992px) {
-    position: sticky;
-    top: 0;
 
-    .nav-center {
-      width: 90%;
-    }
-    .logo {
-      display: none;
-    }
-    .logo-text {
-      display: block;
-    }
+  .form-row {
+    width:100%;
+    
   }
+
 `
+
 export default Wrapper

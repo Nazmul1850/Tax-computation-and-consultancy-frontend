@@ -29,6 +29,14 @@ ul li{
 ul li label{
   cursor: pointer;
 }
+.skip{
+  width: 20%;
+  align-self: flex-end;
+}
+.skip-button {
+  display: flex;
+  flex-direction: column;
+}
 `
 
 export default Wrapper

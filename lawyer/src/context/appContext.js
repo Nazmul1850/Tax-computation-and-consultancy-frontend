@@ -16,17 +16,22 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    UPDATE_SALARY_BEGIN,
+    UPDATE_SALARY_SUCCESS,
+    UPDATE_SALARY_ERROR,
 } from "./actions"
 
 
 const token = localStorage.getItem('token')
 const lawyer = localStorage.getItem('lawyer')
+const client = localStorage.getItem('client')
 const initialState = {
     isLoading: false,
     showAlert: false,
     alertText: '',
     alertType: '',
     lawyer: lawyer ? JSON.parse(lawyer) : null,
+    client: client ? JSON.parse(client) : null,
     token: token,
     showSidebar: false,
 
@@ -59,6 +64,7 @@ const AppProvider = ({ children }) => {
     const removeUserFromLocalStorage = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('lawyer')
+        localStorage.removeItem('client')
     }
 
 
@@ -169,6 +175,30 @@ const AppProvider = ({ children }) => {
         }
         clearAlert()
     }
+
+    const updateSalary = async (currentSalary) => {
+        console.log("Inside update salary");
+        console.log(currentSalary);
+        dispatch({ type:UPDATE_SALARY_BEGIN })
+        try {
+            const { data } = await authFetch.post('client/salary/update' , {salaryInfo:currentSalary});
+            const {  salary  } = data;
+            
+            console.log(salary);
+
+            dispatch({ 
+                type:UPDATE_SALARY_SUCCESS,
+                payload: { salary  }, 
+            });
+
+        } catch (error) {
+            dispatch({
+                type: UPDATE_SALARY_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
     return (
       <AppContext.Provider
         value={{
@@ -180,6 +210,7 @@ const AppProvider = ({ children }) => {
           logoutUser,
           handleChange,
           updateLawyer,
+          updateSalary,
         }}
       >
         {children}

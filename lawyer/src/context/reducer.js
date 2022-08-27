@@ -1,20 +1,7 @@
 
-import { 
-    DISPLAY_ALERT, 
-    CLEAR_ALERT,
-    REGISTER_USER_BEGIN,
-    REGISTER_USER_SUCCESS,
-    REGISTER_USER_ERROR,
-    LOGIN_USER_BEGIN,
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR,
-    TOGGLE_SIDEBAR,
-    LOGOUT_USER,
-    HANDLE_CHANGE,
-    UPDATE_USER_BEGIN,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_ERROR,
- } from "./actions"
+import {
+  CLEAR_ALERT, DISPLAY_ALERT, HANDLE_CHANGE, LOGIN_USER_BEGIN, LOGIN_USER_ERROR, LOGIN_USER_SUCCESS, LOGOUT_USER, REGISTER_USER_BEGIN, REGISTER_USER_ERROR, REGISTER_USER_SUCCESS, TOGGLE_SIDEBAR, UPDATE_SALARY_BEGIN, UPDATE_SALARY_ERROR, UPDATE_SALARY_SUCCESS, UPDATE_USER_BEGIN, UPDATE_USER_ERROR, UPDATE_USER_SUCCESS
+} from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
         return {
@@ -93,6 +80,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         lawyer: null,
+        client:null,
         token: null,
       }
     }
@@ -116,6 +104,31 @@ const reducer = (state, action) => {
     }
   }
   if (action.type === UPDATE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_SALARY_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_SALARY_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      salary: action.payload.salary,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Salary Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_SALARY_ERROR) {
     return {
       ...state,
       isLoading: false,

@@ -31,6 +31,7 @@ const Register = () => {
             return
         }
         const currentUser = {name, email, password}
+        console.log(currentUser);
         loginLawyer(currentUser);
 
     }

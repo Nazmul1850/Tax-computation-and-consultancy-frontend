@@ -1,4 +1,4 @@
-import { BsRecycle } from 'react-icons/bs'
+import { GiTalk } from 'react-icons/gi'
 import { FcBusiness } from 'react-icons/fc'
 import { AiFillMoneyCollect } from 'react-icons/ai'
 import { ImProfile } from 'react-icons/im'
@@ -25,7 +25,7 @@ const links = [
       id: 5,
       text: 'Consultation Info',
       path: 'coninfo',
-      icon: <BsRecycle />,
+      icon: <GiTalk />,
     },
     {
       id: 2,

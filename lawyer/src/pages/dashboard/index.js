@@ -6,6 +6,7 @@ import ClientInfo from "./ClientInfo";
 import ConsultaionInfo from "./ConsultaionInfo";
 import Investment from "./Investment";
 import HouseProperty from "./HouseProperty";
+import Files from "./Files";
 export {
     Profile,
     Clients,
@@ -14,5 +15,6 @@ export {
     ConsultaionInfo,
     Investment,
     HouseProperty,
+    Files,
     SharedLayout
 }
