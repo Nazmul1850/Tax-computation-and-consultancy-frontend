@@ -411,6 +411,11 @@ ul {
 .card:hover {
   transform:scale(1.03);
 }
+.qa-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 .services .col-md-4 {
   margin: 1rem 1rem 1rem 1rem;

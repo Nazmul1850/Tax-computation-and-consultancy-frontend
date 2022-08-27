@@ -61,12 +61,14 @@ const Profile = () => {
             name='name'
             value={name}
             handleChange={(e) => setName(e.target.value)}
+            isPro='false'
           />
           <FormRow
             type='email'
             name='email'
             value={email}
             handleChange={(e) => setEmail(e.target.value)}
+            isPro='false'
           />
           <FormRowSelect
             name='gender'
@@ -80,18 +82,21 @@ const Profile = () => {
             name='phone'
             value={phone}
             handleChange={(e) => setPhone(e.target.value)}
+            isPro='false'
           />
           <FormRow
             type='text'
             name='address'
             value={address}
             handleChange={(e) => setAddress(e.target.value)}
+            isPro='false'
           />
           <FormRow
             type='date'
             name='birthdate'
             value={birthdate}
             handleChange={(e) => setBD(e.target.value)}
+            isPro='false'
           />
           <FormRow
             labelText='NID'
@@ -99,6 +104,7 @@ const Profile = () => {
             name='nid'
             value={nid}
             handleChange={(e) => setNid(e.target.value)}
+            isPro='false'
           />
           <button className='btn btn-block' type='submit' disabled={isLoading}>
             {isLoading ? 'Please Wait...' : 'save changes'}

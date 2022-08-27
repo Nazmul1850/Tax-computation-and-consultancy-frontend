@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa'
 import { useAppContext } from '../context/appContext'
 import Logo from './Logo'
 import Wrapper from '../assets/wrappers/Navbar'
+
+const client = localStorage.getItem('client')
+
+const initDash ={
+  text: client ? JSON.parse(client).name:'DashBoard',
+}
+
 const Navbar = () => {
     const { lawyer, toggleSidebar, logoutUser } = useAppContext();
-    const [showLogout, setShowLogout] = useState(false)
+    const [showLogout, setShowLogout] = useState(false);
+    const [dashValues, setdashValues] = useState(initDash);
   return (
     <Wrapper>
       <div className='nav-center'>
@@ -18,7 +26,7 @@ const Navbar = () => {
         
         <div>
           {/* <Logo /> */}
-          <h3 className='logo-text'>dashboard</h3>
+          <h3 className='logo-text'>{dashValues.text}</h3>
         </div>
 
         <div className='btn-container'>

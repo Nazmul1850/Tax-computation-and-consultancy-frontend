@@ -4,7 +4,7 @@ import React from "react";
 
 import { BrowserRouter as Router,Routes, Switch, Route } from 'react-router-dom'
 import {Register, Error} from "./pages";
-import {Profile, SharedLayout, Clients, Consultation, ClientInfo, Investment, ConsultaionInfo, HouseProperty } from './pages/dashboard'
+import {Profile, SharedLayout, Clients, Consultation, ClientInfo, Investment, ConsultaionInfo, HouseProperty, Files } from './pages/dashboard'
 import Protectedroute from "./pages/Protectedroute";
 
 function App() {
