@@ -69,6 +69,19 @@ const AppProvider = ({ children }) => {
           Authorization: `Bearer ${state.token}`,
         },
     })
+    authFetch.interceptors.response.use(
+        (response) => {
+          return response
+        },
+        (error) => {
+          console.log(error.response)
+          if (error.response.data.msg.code === 401) {
+            console.log('AUTH ERROR');
+            logoutUser();
+          }
+          return Promise.reject(error)
+        }
+      )
 
 
 
