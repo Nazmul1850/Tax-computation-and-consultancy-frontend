@@ -51,8 +51,9 @@ const HouseProperty = () => {
     return (
 
         <Wrapper>
+            <h2>HouseProperty </h2>
         <form className='form' onSubmit={handleSubmit}>
-            <h3>HouseProperty </h3>
+            
             {showAlert && <Alert />}
 
             {/* name */}

@@ -1,11 +1,13 @@
+
 import React, { useState } from 'react';
+
 
 
 import './FormRow.css';
 
 
-const FormRow = ({type,name,value,handleChange,labelText,hoverText,isPro}) => {
 
+const FormRow = ({type,name,value,handleChange,labelText,hoverText,isPro}) => {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -19,6 +21,7 @@ const FormRow = ({type,name,value,handleChange,labelText,hoverText,isPro}) => {
         
           <label htmlFor={name} className='form-label' onMouseOver={handleMouseOver} onMouseLeave={handleMouseOut} >
             {labelText || name}
+
             {!isPro && 
             isHovering && <div className='hoverText'>{hoverText}</div> }
           </label>

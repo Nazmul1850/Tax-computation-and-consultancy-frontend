@@ -23,8 +23,9 @@ const Wrapper = styled.section`
   }
   .form-row {
     display: inline-flex;
-}
-  
+  }
+
+
   .form-center {
     display: flex;
     flex-direction: column;
