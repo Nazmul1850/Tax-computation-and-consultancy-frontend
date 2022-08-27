@@ -16,7 +16,7 @@ import FileUpload from '../../components/FileUpload'
 const isConsulting = JSON.parse(localStorage.getItem('isConsulting'))
 
 const token = localStorage.getItem('token');
-const user = JSON.parse(localStorage.getItem('user'))
+// const user = JSON.parse(localStorage.getItem('user'))
 
 
 
@@ -46,12 +46,14 @@ const Consultation = () => {
     const [singleFiles, setSingleFiles] = useState([]);
     const [values, setValues] = useState(initQ);
     
-    const {supplyMsg, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles } = useAppContext();
+    const {user, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles } = useAppContext();
     
     const [backendComments, setBackendComments] = useState([]);
     const [rootComments, setrootComments] = useState([]);
     const [activeComment, setActiveComment] = useState(null);
-    const currentUserId = user._id;
+    let currentUserId 
+    if(user._id) currentUserId=user._id;
+    if(user.id) currentUserId=user.id;
     console.log(currentUserId);
     console.log("From values")
     console.log(values.isConsulting);
@@ -117,6 +119,7 @@ const Consultation = () => {
                 values.question = nextQuestion.question;
                 values.optionlist = nextQuestion.optionlist;
                 values.type = nextQuestion.type;
+                values.tag = nextQuestion.tag;
                 if(nextQuestion.type === "select") {
                     values.inputType = true;
                 }else {
@@ -159,6 +162,7 @@ const Consultation = () => {
         e.preventDefault()
         // const { gender, phone } = values
     }
+
     
     useEffect(() => {
         getSingleFileslist();
@@ -294,12 +298,13 @@ const Consultation = () => {
         {!values.isConsulting &&
             <form className='form' onSubmit={handleSubmit}>
                 {showAlert && <Alert />}
-             
+
                 <div className='q-center'>
                     <QA
                         question={values.question} 
                         optionlist={values.optionlist}
                         type={values.type}
+                        toggleConsultation={toggleConsultation}
                     />
 
 
