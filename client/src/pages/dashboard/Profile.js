@@ -8,7 +8,7 @@ const initialState = {
       circleOptions:['', '252','112','342','225','230','310','111','150'],
       zoneOptions:['', 'ZONE 12','ZONE 13','ZONE 14','ZONE 15','ZONE 16', 'ZONE 17', 'ZONE 18' , 'ZONE 19'],
       residentStat:['', 'yes','no'],
-      citizenTypes:['','A','B','C','D'],
+      citizenTypes:['','A(A gazetted war-wounded freedom fighter)','B(A person with disability)','C(Aged 65 years or more)','D(A parent of a person with disability)'],
       phone:+880,
       address:'',
 }

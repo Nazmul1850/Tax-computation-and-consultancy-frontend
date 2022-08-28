@@ -2,14 +2,25 @@ import { useState } from 'react'
 import Wrapper from "../../assets/wrappers/Calculator";
 import { useAppContext } from "../../context/appContext";
 import {FaBusinessTime, FaCaretDown} from 'react-icons/fa'
+import Tables from '../../components/Tables'
 
 import { FormRow } from '../../components';
+
+const initState = {
+    assessmentYear : '2016-17',
+    name : 'Sattyajit',
+    TIN : '812365785415',
+    gender : 'Male'
+}
 
 const Calculator = () => {
     const { user } = useAppContext();
     const [showAsses, setShowAsses] = useState(false);
     const [assesList, setAssesList] = useState([1,2,3]);
 
+    const [basicInfo , setBasicInfo] = useState(initState);
+    const  tifs = {1: 'Joe', 2: 'Jane'};
+    
     
 
 
@@ -20,6 +31,7 @@ const Calculator = () => {
     const [currentAsses,setCurrentAsses] = useState(time.getFullYear() + "-" + (time.getFullYear() + 1).toString());
 
     return (
+        <>
         <Wrapper>
             <div className='asees-container' >
                 <button className='btn' onClick={() => setShowAsses(!showAsses)}>
@@ -46,7 +58,14 @@ const Calculator = () => {
                 />
                 
             </div>
+            
+            
         </Wrapper>
+
+        <Tables props={initState} title="kisu nah" />
+
+
+       </>
     )
 }
 export default Calculator;
