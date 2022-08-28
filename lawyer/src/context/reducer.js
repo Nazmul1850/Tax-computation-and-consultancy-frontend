@@ -1,6 +1,23 @@
 
 import {
-  CLEAR_ALERT, DISPLAY_ALERT, HANDLE_CHANGE, LOGIN_USER_BEGIN, LOGIN_USER_ERROR, LOGIN_USER_SUCCESS, LOGOUT_USER, REGISTER_USER_BEGIN, REGISTER_USER_ERROR, REGISTER_USER_SUCCESS, TOGGLE_SIDEBAR, UPDATE_SALARY_BEGIN, UPDATE_SALARY_ERROR, UPDATE_SALARY_SUCCESS, UPDATE_USER_BEGIN, UPDATE_USER_ERROR, UPDATE_USER_SUCCESS
+  CLEAR_ALERT, 
+  DISPLAY_ALERT, 
+  HANDLE_CHANGE, 
+  LOGIN_USER_BEGIN, 
+  LOGIN_USER_ERROR, 
+  LOGIN_USER_SUCCESS, 
+  LOGOUT_USER,
+  REGISTER_USER_BEGIN, 
+  REGISTER_USER_ERROR, 
+  REGISTER_USER_SUCCESS, 
+  TOGGLE_SIDEBAR, 
+  UPDATE_SALARY_BEGIN, 
+  UPDATE_SALARY_ERROR, 
+  UPDATE_SALARY_SUCCESS, 
+  UPDATE_USER_BEGIN, 
+  UPDATE_USER_ERROR, 
+  UPDATE_USER_SUCCESS,
+  SET_CURRENT_CLIENT,
 } from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -11,6 +28,12 @@ const reducer = (state, action) => {
           alertText: 'Please provide all values!',
         }
       }
+    if (action.type === SET_CURRENT_CLIENT) {
+      return {
+        ...state,
+        client:action.payload.client,
+      }
+    }
     if (action.type === CLEAR_ALERT) {
         return {
           ...state,
