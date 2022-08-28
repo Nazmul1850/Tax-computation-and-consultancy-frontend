@@ -51,8 +51,9 @@ const HouseProperty = () => {
     return (
 
         <Wrapper>
+            <h2>HouseProperty </h2>
         <form className='form' onSubmit={handleSubmit}>
-            <h3>HouseProperty </h3>
+            
             {showAlert && <Alert />}
 
             {/* name */}
@@ -63,13 +64,15 @@ const HouseProperty = () => {
                 value={address}
                 handleChange={(e) => setAddress(e.target.value)}
                 labelText='Address'
+                hoverText='গৃহ-সম্পত্তির ঠিকানা । '
             />
             <FormRow
                 type='number'
                 name='total_area'
                 value={total_area}
                 handleChange={(e) => setTotalArea(e.target.value)}
-                labelText=''
+                labelText='Total Area'
+                hoverText='বাড়ীর মোট আয়তন।'
             />
 
             <FormRow
@@ -78,6 +81,7 @@ const HouseProperty = () => {
                 value={isResident}
                 handleChange={(e) => setIsresident(e.target.value)}
                 labelText='isResident(0 or 1)'
+                hoverText='এই বাড়ীতেই বসবাস করে কিনা উল্লেখ করতে হবে । '
             />
             <FormRow
                 type='number'
@@ -85,6 +89,7 @@ const HouseProperty = () => {
                 value={share}
                 handleChange={(e) => setShare(e.target.value)}
                 labelText='Share of the Assessee (%)'
+                hoverText='করদাতার অংশ (%) । করদাতা যদি অংশীদার হন মোট সম্পত্তিতে তার অংশীদারত্বের শতকরা পরিমাণ উল্লেখ করতে হবে । '
             />
             <FormRow
                 labelText='Annual Value'
@@ -92,6 +97,7 @@ const HouseProperty = () => {
                 name='annual_value'
                 value={annual_value}
                 handleChange={(e) => setAnnualValue(e.target.value)}
+                hoverText='বার্ষিক ভাড়া । ১২মাসে মোট যে ভাড়া উঠবে তাই দেখাতে হবে । কয়েকমাস যদি বাড়ী ভাড়া না থাকে তাও সেগুলা দেখাতে হবে । '
                 
             />
             <FormRow
@@ -100,6 +106,7 @@ const HouseProperty = () => {
                 value={repair}
                 handleChange={(e) => setRepair(e.target.value)}
                 labelText='Repair, Collection, etc.'
+                hoverText='মেরামত , আদায় ইত্যাদি : আবাসিক ব্যাবহারের জন্য ২৫% এবং বাণিজ্যিক ব্যাবহারের জন্য ৩০% । '
             />
             <FormRow
                 type='number'
@@ -107,6 +114,7 @@ const HouseProperty = () => {
                 value={municipal}
                 handleChange={(e) => setMunicipal(e.target.value)}
                 labelText='Municipal or Local Tax'
+                hoverText='পৌরকর অথবা স্থানীয় কর । '
             />
             <FormRow
                 type='number'
@@ -114,6 +122,7 @@ const HouseProperty = () => {
                 value={land_rev}
                 handleChange={(e) => setLandRev(e.target.value)}
                 labelText='Land Revenue'
+                hoverText='ভূমি রাজস্ব'
             />
             <FormRow
                 type='number'
@@ -121,6 +130,7 @@ const HouseProperty = () => {
                 value={loan_mort}
                 handleChange={(e) => setLoan(e.target.value)}
                 labelText='Interest on Loan/Mortgage/Capital Charge'
+                hoverText='ঋণ এর জন্য সুদ/বন্ধকী/মূল্ধনী চার্জ ।  '
             />
             <FormRow
                 type='number'
@@ -128,6 +138,7 @@ const HouseProperty = () => {
                 value={insurance_premium}
                 handleChange={(e) => setInsurance(e.target.value)}
                 labelText='Insurance Premium'
+                hoverText='সংশ্লিষ্ট গৃহ-সম্পত্তির বীমা করা হলে । '
             />
             <FormRow
                 type='number'
@@ -135,6 +146,7 @@ const HouseProperty = () => {
                 value={vacancy_allow}
                 handleChange={(e) => setVacancyAllowance(e.target.value)}
                 labelText='Vacancy Allowance'
+                hoverText='গৃহ-সম্পত্তি খালি থাকার কারণে দাবীকৃত রেয়াত । '
             />
             <FormRow
                 labelText='Other , if any'
@@ -142,6 +154,7 @@ const HouseProperty = () => {
                 name='other'
                 value={other}
                 handleChange={(e) => setOther(e.target.value)}
+                hoverText='গৃহ-সম্পত্তির জন্য অন্য খরচ (যদি থাকে )'
                 
             />
             <FormRow
@@ -150,6 +163,8 @@ const HouseProperty = () => {
                 name='other_comment'
                 value={other_comment}
                 handleChange={(e) => setOtherComment(e.target.value)}
+                hoverText=''
+                isPro='false'
             />
             <button className='btn btn-block' type='submit' disabled={isLoading}>
                 {isLoading ? 'Please Wait...' : 'save changes'}
@@ -161,6 +176,7 @@ const HouseProperty = () => {
                 value={total_taxable}
                 // handleChange={(e) => setOtherComment(e.target.value)}
                 labelText='Total Taxable Amount'
+                hoverText='মোট করযোগ্য টাকা ।'
             />
             </div>
         </form>

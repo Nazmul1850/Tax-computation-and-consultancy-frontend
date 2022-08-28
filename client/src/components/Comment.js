@@ -15,7 +15,7 @@ const Comment = ({
         updateComment,
     }) => {
     const fiveMinutes = 300000;
-    // console.log("in comment" , currentUserId);
+    console.log("in comment" , currentUserId);
     const timePassed = new Date() - new Date(comment.time) > fiveMinutes;
     const canReply = Boolean(currentUserId);
     const canEdit = currentUserId === comment.sender && !timePassed;
