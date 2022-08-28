@@ -19,7 +19,16 @@ import {
     UPDATE_SALARY_BEGIN,
     UPDATE_SALARY_SUCCESS,
     UPDATE_SALARY_ERROR,
+
+    UPDATE_INVESTMENT_BEGIN,
+    UPDATE_INVESTMENT_SUCCESS,
+    UPDATE_INVESTMENT_ERROR,
+    UPDATE_BUSINESS_BEGIN,
+    UPDATE_BUSINESS_SUCCESS,
+    UPDATE_BUSINESS_ERROR,
+
     SET_CURRENT_CLIENT,
+
 } from "./actions"
 
 
@@ -210,6 +219,56 @@ const AppProvider = ({ children }) => {
         }
         clearAlert();
     }
+
+    const updateInvestment = async (currentInvestment) => {
+        console.log("Inside investment salary");
+        console.log(currentInvestment);
+        dispatch({ type:UPDATE_INVESTMENT_BEGIN })
+        try {
+            const { data } = await authFetch.post('client/investment/update' , {investmentInfo:currentInvestment});
+            const {  investment } = data;
+            
+            console.log("app context er investmetn",investment);
+
+            dispatch({ 
+                type:UPDATE_INVESTMENT_SUCCESS,
+                payload: { investment }, 
+            });
+
+        } catch (error) {
+            dispatch({
+                type: UPDATE_INVESTMENT_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+
+
+    const updateBusiness = async (currentBusiness) => {
+        console.log("Inside business salary");
+        console.log(currentBusiness);
+        dispatch({ type:UPDATE_BUSINESS_BEGIN })
+        try {
+            const { data } = await authFetch.post('client/business/update' , {businessInfo:currentBusiness});
+            const {  business } = data;
+            
+            console.log("app context er investmetn",business);
+
+            dispatch({ 
+                type:UPDATE_BUSINESS_SUCCESS,
+                payload: { business }, 
+            });
+
+        } catch (error) {
+            dispatch({
+                type: UPDATE_BUSINESS_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+    
     return (
       <AppContext.Provider
         value={{
@@ -222,7 +281,12 @@ const AppProvider = ({ children }) => {
           handleChange,
           updateLawyer,
           updateSalary,
+
+          updateInvestment,
+          updateBusiness,
+
           setCurrentClient,
+
         }}
       >
         {children}

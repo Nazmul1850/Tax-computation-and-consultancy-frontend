@@ -5,8 +5,8 @@ import { useAppContext } from '../../context/appContext'
 
 const initialState = {
       genderOptions:['', 'Male','Female','Others'],
-      circleOptions:['', '252','112','342'],
-      zoneOptions:['', 'ZONE 12','ZONE 13','ZONE 14'],
+      circleOptions:['', '252','112','342','225','230','310','111','150'],
+      zoneOptions:['', 'ZONE 12','ZONE 13','ZONE 14','ZONE 15','ZONE 16', 'ZONE 17', 'ZONE 18' , 'ZONE 19'],
       residentStat:['', 'yes','no'],
       citizenTypes:['','A','B','C','D'],
       phone:+880,

@@ -6,7 +6,8 @@ import {
   LOGIN_USER_BEGIN, 
   LOGIN_USER_ERROR, 
   LOGIN_USER_SUCCESS, 
-  LOGOUT_USER,
+  LOGOUT_USER, 
+
   REGISTER_USER_BEGIN, 
   REGISTER_USER_ERROR, 
   REGISTER_USER_SUCCESS, 
@@ -16,8 +17,18 @@ import {
   UPDATE_SALARY_SUCCESS, 
   UPDATE_USER_BEGIN, 
   UPDATE_USER_ERROR, 
-  UPDATE_USER_SUCCESS,
+
+  UPDATE_USER_SUCCESS ,    
+  UPDATE_INVESTMENT_BEGIN,
+  UPDATE_INVESTMENT_SUCCESS,
+  UPDATE_INVESTMENT_ERROR,
+  UPDATE_BUSINESS_BEGIN,
+  UPDATE_BUSINESS_SUCCESS,
+  UPDATE_BUSINESS_ERROR,
+
+
   SET_CURRENT_CLIENT,
+
 } from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -152,6 +163,57 @@ const reducer = (state, action) => {
   }
 
   if (action.type === UPDATE_SALARY_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+
+  if (action.type === UPDATE_BUSINESS_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_BUSINESS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      business: action.payload.business,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Salary Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_BUSINESS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === UPDATE_INVESTMENT_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === UPDATE_INVESTMENT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      investment: action.payload.investment,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Investment Updated!',
+    }
+  }
+
+  if (action.type === UPDATE_INVESTMENT_ERROR) {
     return {
       ...state,
       isLoading: false,
