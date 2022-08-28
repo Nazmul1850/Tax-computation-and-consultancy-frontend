@@ -19,6 +19,7 @@ import {
     UPDATE_SALARY_BEGIN,
     UPDATE_SALARY_SUCCESS,
     UPDATE_SALARY_ERROR,
+    SET_CURRENT_CLIENT,
 } from "./actions"
 
 
@@ -28,6 +29,7 @@ const client = localStorage.getItem('client')
 const initialState = {
     isLoading: false,
     showAlert: false,
+    isClientPresent:client?true:false,
     alertText: '',
     alertType: '',
     lawyer: lawyer ? JSON.parse(lawyer) : null,
@@ -48,6 +50,15 @@ const AppProvider = ({ children }) => {
           Authorization: `Bearer ${state.token}`,
         },
     })
+
+    const setCurrentClient = (client) => {
+        dispatch({
+            type:SET_CURRENT_CLIENT,
+            payload:{
+                client,
+            }
+        });
+    }
     const displayAlert = () =>{
         dispatch({type:DISPLAY_ALERT})
         clearAlert()
@@ -211,6 +222,7 @@ const AppProvider = ({ children }) => {
           handleChange,
           updateLawyer,
           updateSalary,
+          setCurrentClient,
         }}
       >
         {children}
