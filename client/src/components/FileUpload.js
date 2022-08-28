@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import './FileUpload.css';
 
 import './FileUpload.css';
 
@@ -18,7 +19,7 @@ const FileUpload = (props) => {
     const [singleFile, setSingleFile] = useState(initialState);
     const [multipleFiles, setMultipleFiles] = useState(initialState);
     const [title, setTitle] =  useState(initialState);
-    const [singleProgress, setSingleProgress] = useState(initialState);
+    const [singleProgress, setSingleProgress] = useState('0');
     const [multipleProgress, setMultipleProgress] = useState(initialState);
 
     const { singleFileUpload } =  useAppContext();
@@ -51,6 +52,7 @@ const FileUpload = (props) => {
         await singleFileUpload(formData, singleFileOptions);
         props.getsingle();
     }
+    
     // const UploadMultipleFiles = async () => {
     //     const formData = new FormData();
     //     formData.append('title', title);
@@ -61,6 +63,7 @@ const FileUpload = (props) => {
     //     props.getMultiple();
     // }
     return (
+        
         <div className="row mt-3">
             <div className="col-6">
                 <div className="form-group">
@@ -69,7 +72,7 @@ const FileUpload = (props) => {
                 </div>
                 <div className="row">
                     <div className="col-10">
-                        <button type="button" className="uploadBtn" onClick={() => uploadSingleFile()} >Upload</button>
+                        <button type="button" className="uploadBtn" onClick={() => uploadSingleFile()}  >Upload</button>
                     </div>
                     <div className="col-2" style={{width : '7%'}}>
                         <CircularProgressbar
@@ -77,7 +80,9 @@ const FileUpload = (props) => {
                             text={`${singleProgress}%`}
                             styles={buildStyles({
                                 display: 'flex',
+
                                 rotation: 0.25,
+                                
                                 strokeLinecap: 'butt',
                                 textSize: '5px',
                                 pathTransitionDuration: 0.5,
@@ -85,6 +90,7 @@ const FileUpload = (props) => {
                                 textColor: '#f88',
                                 trailColor: '#d6d6d6',
                                 backgroundColor: '#3e98c7',
+                                
                             })}
                         />
                     </div>

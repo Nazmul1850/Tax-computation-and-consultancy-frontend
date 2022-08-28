@@ -1,6 +1,7 @@
-import React, { useState, useReducer, useContext} from "react";
+import React, { useReducer, useContext} from "react";
 import reducer from './reducer'
 import axios from 'axios'
+
 import { 
     DISPLAY_ALERT, 
     CLEAR_ALERT,
@@ -25,6 +26,9 @@ import {
     UPDATE_SALARY_BEGIN,
     UPDATE_SALARY_SUCCESS,
     UPDATE_SALARY_ERROR,
+    UPDATE_INVESTMENT_BEGIN,
+    UPDATE_INVESTMENT_SUCCESS,
+    UPDATE_INVESTMENT_ERROR,
     SAVE_QA_BEGIN,
     SAVE_QA_SUCCESS,
     SAVE_QA_ERROR,
@@ -39,6 +43,7 @@ const user = localStorage.getItem('user')
 const house = localStorage.getItem('house')
 const business = localStorage.getItem('business')
 const salary = localStorage.getItem('salary')
+const investment = localStorage.getItem('investment')
 const currentMsgId = localStorage.getItem('currentMsgId')
 const allMsg = localStorage.getItem('allMsg')
 
@@ -51,6 +56,7 @@ const initialState = {
     house: house ? JSON.parse(house) : null,
     business: business ? JSON.parse(business) : null,
     salary: salary ? JSON.parse(salary) : null,
+    investment: investment ? JSON.parse(investment) : null,
     currentMsgId: currentMsgId ? JSON.parse(currentMsgId) : null,
     allMsg: allMsg ? JSON.parse(allMsg) : null,
     token: token,
@@ -83,6 +89,20 @@ const AppProvider = ({ children }) => {
         }
       )
 
+    authFetch.interceptors.response.use(
+        (response) => {
+          return response
+        },
+        (error) => {
+          console.log(error.response)
+          if (error.response.data.msg.code === 401) {
+            console.log('AUTH ERROR');
+            logoutUser();
+          }
+          return Promise.reject(error)
+        }
+    )
+
 
 
     const displayAlert = () =>{
@@ -106,6 +126,7 @@ const AppProvider = ({ children }) => {
         localStorage.removeItem('house')
         localStorage.removeItem('business')
         localStorage.removeItem('salary')
+        localStorage.removeItem('investment')
         localStorage.removeItem('allMsg')
         localStorage.removeItem('isConsulting')
 
@@ -120,6 +141,9 @@ const AppProvider = ({ children }) => {
 
     const addSalaryToLocalStorage = ({ salary }) => {
         localStorage.setItem('salary', JSON.stringify(salary))        
+    }
+    const addInvestmentToLocalStorage = ({ investment }) => {
+        localStorage.setItem('investment', JSON.stringify(investment))        
     }
 
 
@@ -279,13 +303,13 @@ const AppProvider = ({ children }) => {
 
     const updateBusiness = async (currentBusiness) => {
         console.log("Inside update business");
-        console.log(currentBusiness);
+        
         dispatch({ type:UPDATE_BUSINESS_BEGIN })
         try {
             const { data } = await authFetch.patch('profile/business' , {newBusiness:currentBusiness});
             const { user, business , token } = data;
             
-            console.log(house);
+            console.log(business);
 
             dispatch({ 
                 type:UPDATE_BUSINESS_SUCCESS,
@@ -356,6 +380,31 @@ const AppProvider = ({ children }) => {
         clearAlert();
     }
 
+    const updateInvestment = async (currentInvestment) => {
+        console.log("Inside investment salary");
+        console.log(currentInvestment);
+        dispatch({ type:UPDATE_INVESTMENT_BEGIN })
+        try {
+            const { data } = await authFetch.patch('profile/investment' , {investmentInfo:currentInvestment});
+            const { user, investment , token } = data;
+            
+            console.log("app context er investmetn",investment);
+
+            dispatch({ 
+                type:UPDATE_INVESTMENT_SUCCESS,
+                payload: { user, investment , token }, 
+            });
+
+            addInvestmentToLocalStorage({ investment });
+        } catch (error) {
+            dispatch({
+                type: UPDATE_INVESTMENT_ERROR,
+                payload: { msg: error.response.data.msg.msg },
+            });
+        }
+        clearAlert();
+    }
+
     const getMessages = async () => {
         console.log("getting msg");
         dispatch({ type:GET_MSG_BEGIN })
@@ -392,7 +441,18 @@ const AppProvider = ({ children }) => {
             const {data} = await authFetch.get('getSingleFiles');
             return data;
         } catch (error) {
-            throw error;
+            console.log(error);
+        }
+    }
+
+    const downloadFile = async (fileId) => {
+        try{
+            const {data} = await authFetch.post('fileDownload', {fileId}, {
+                responseType: 'blob'
+            });
+            return data;
+        } catch (error) {
+            console.log('failed');
         }
     }
 
@@ -416,6 +476,8 @@ const AppProvider = ({ children }) => {
           singleFileUpload,
           getSingleFiles,
           saveMsg,
+          downloadFile,
+          updateInvestment,
         }}
       >
         {children}
