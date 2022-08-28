@@ -7,6 +7,7 @@ import {
   LOGIN_USER_ERROR, 
   LOGIN_USER_SUCCESS, 
   LOGOUT_USER, 
+
   REGISTER_USER_BEGIN, 
   REGISTER_USER_ERROR, 
   REGISTER_USER_SUCCESS, 
@@ -16,6 +17,7 @@ import {
   UPDATE_SALARY_SUCCESS, 
   UPDATE_USER_BEGIN, 
   UPDATE_USER_ERROR, 
+
   UPDATE_USER_SUCCESS ,    
   UPDATE_INVESTMENT_BEGIN,
   UPDATE_INVESTMENT_SUCCESS,
@@ -23,6 +25,10 @@ import {
   UPDATE_BUSINESS_BEGIN,
   UPDATE_BUSINESS_SUCCESS,
   UPDATE_BUSINESS_ERROR,
+
+
+  SET_CURRENT_CLIENT,
+
 } from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -33,6 +39,12 @@ const reducer = (state, action) => {
           alertText: 'Please provide all values!',
         }
       }
+    if (action.type === SET_CURRENT_CLIENT) {
+      return {
+        ...state,
+        client:action.payload.client,
+      }
+    }
     if (action.type === CLEAR_ALERT) {
         return {
           ...state,

@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext} from "react";
+import React, { useReducer, useContext} from "react";
 import reducer from './reducer'
 import axios from 'axios'
 
@@ -441,7 +441,18 @@ const AppProvider = ({ children }) => {
             const {data} = await authFetch.get('getSingleFiles');
             return data;
         } catch (error) {
-            throw error;
+            console.log(error);
+        }
+    }
+
+    const downloadFile = async (fileId) => {
+        try{
+            const {data} = await authFetch.post('fileDownload', {fileId}, {
+                responseType: 'blob'
+            });
+            return data;
+        } catch (error) {
+            console.log('failed');
         }
     }
 
@@ -465,6 +476,7 @@ const AppProvider = ({ children }) => {
           singleFileUpload,
           getSingleFiles,
           saveMsg,
+          downloadFile,
           updateInvestment,
         }}
       >

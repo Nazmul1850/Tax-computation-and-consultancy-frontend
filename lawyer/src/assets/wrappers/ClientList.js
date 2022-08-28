@@ -1,6 +1,21 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.main`
+    border-radius: var(--borderRadius);
+    width: 100%;
+    background: var(--white);
+    padding: 3rem 2rem 4rem;
+    box-shadow: var(--shadow-2);
+
+
+  .search {
+      width: 50%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+  }
     .col-md-4 {
     margin-bottom: 30px;
     }
