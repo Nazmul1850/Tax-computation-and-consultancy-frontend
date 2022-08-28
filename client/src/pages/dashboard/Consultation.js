@@ -43,7 +43,6 @@ const initQ = {
 
 
 const Consultation = () => {
-    const [singleFiles, setSingleFiles] = useState([]);
     const [values, setValues] = useState(initQ);
     
     const {user, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles } = useAppContext();
@@ -59,14 +58,6 @@ const Consultation = () => {
     console.log(values.isConsulting);
     let questionId = 1;
 
-    const getSingleFileslist = async () => {
-        try {
-            const fileslist = await getSingleFiles();
-            setSingleFiles(fileslist);
-        } catch (error) {
-          console.log(error);
-        }
-    }
 
     const handleChangeState = (e) => {
         setValues({...values, [e.target.name]:e.target.value})
@@ -164,9 +155,6 @@ const Consultation = () => {
     }
 
     
-    useEffect(() => {
-        getSingleFileslist();
-    }, []);
 
     console.log('Backend Comments', backendComments);
 
@@ -345,9 +333,7 @@ const Consultation = () => {
                 </div>
             </div>
 
-            <FileUpload 
-                getsingle = { () => getSingleFileslist()}
-            />
+            
 
             <button className='btn btn-block' onClick={toggleConsultation}>Reload Consultation</button>
 

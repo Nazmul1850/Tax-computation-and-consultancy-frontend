@@ -5,6 +5,8 @@ import { ImProfile } from 'react-icons/im'
 import {BsFillCalculatorFill} from 'react-icons/bs'
 import {BiMessageRoundedDots} from 'react-icons/bi'
 import {GiFamilyHouse} from 'react-icons/gi'
+import {GoFileSubmodule} from 'react-icons/go'
+
 
 
 const links = [
@@ -41,6 +43,12 @@ const links = [
     },
     {
       id: 8,
+      text: 'files',
+      path: 'files',
+      icon: <GoFileSubmodule />,
+    },
+    {
+      id: 9,
       text: 'allhouse',
       path: 'allhouse',
       icon: <GiFamilyHouse />,
@@ -57,6 +65,7 @@ const links = [
       path: 'profile',
       icon: <ImProfile />,
     },
+    
   ]
   
   export default links
