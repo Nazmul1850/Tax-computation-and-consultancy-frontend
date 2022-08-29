@@ -21,7 +21,7 @@ h3{
     background: var(--primary-50);
     text-align: left;
 }
-tr:hover {background-color: coral;}
+
 
 .styled-table th,
 .styled-table td {
