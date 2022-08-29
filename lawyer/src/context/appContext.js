@@ -199,6 +199,27 @@ const AppProvider = ({ children }) => {
         }
         clearAlert();
     }
+
+    const getSingleFiles = async () => {
+        try {
+            const {data} = await authFetch.get('getSingleFiles');
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const downloadFile = async (fileId) => {
+        try{
+            const {data} = await authFetch.post('fileDownload', {fileId}, {
+                responseType: 'blob'
+            });
+            return data;
+        } catch (error) {
+            console.log('failed');
+        }
+    }
+
     return (
       <AppContext.Provider
         value={{
@@ -211,6 +232,8 @@ const AppProvider = ({ children }) => {
           handleChange,
           updateLawyer,
           updateSalary,
+          getSingleFiles,
+          downloadFile,
         }}
       >
         {children}
