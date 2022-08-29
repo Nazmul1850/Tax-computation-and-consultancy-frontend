@@ -7,6 +7,7 @@ import {BiMessageRoundedDots} from 'react-icons/bi'
 import {GiFamilyHouse} from 'react-icons/gi'
 import {GoFileSubmodule} from 'react-icons/go'
 import {TbReportMoney} from 'react-icons/tb'
+import {IoIosNotifications} from 'react-icons/io'
 
 
 
@@ -16,6 +17,12 @@ const links = [
       text: 'Calculator',
       path: '/',
       icon: <BsFillCalculatorFill />,
+    },
+    {
+      id: 11,
+      text: 'Notification',
+      path: '/notification',
+      icon: <IoIosNotifications />,
     },
     {
       id: 10,

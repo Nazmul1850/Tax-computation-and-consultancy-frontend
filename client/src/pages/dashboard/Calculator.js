@@ -1,51 +1,83 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react';
+import { FaBusinessTime, FaCaretDown } from 'react-icons/fa';
 import Wrapper from "../../assets/wrappers/Calculator";
 import { useAppContext } from "../../context/appContext";
-import {FaBusinessTime, FaCaretDown} from 'react-icons/fa'
 
-import { FormRow, CalculatorTable } from '../../components';
+import { CalculatorTable } from '../../components';
+
+import CreateAsses from '../../apis/createAsses';
+import AllAssesList from '../../apis/getAllAsses';
 
 
 
 const Calculator = () => {
     const { user, token } = useAppContext();
     const [showAsses, setShowAsses] = useState(false);
-    const [assesList, setAssesList] = useState([1,2,3]);
+    const [assesList, setAssesList] = useState([]);
 
-
+    useEffect(()=>{
+        var tempAsses = []
+        AllAssesList({token}).then((al)=> {
+            console.log('tempasses', al);
+            for(let i=0; i < al.length; i++){
+                let time = new Date(al[i].income_year);
+                console.log('time', time);
+                console.log('temp', time.getFullYear());
+                tempAsses.push(al[i]);
+            }
+        })
+        setAssesList(tempAsses);
+    },[])
 
     
-    const time = new Date(user.income_year);
-    const [assesInput, setAssesInput] = useState(time);
+    let time = new Date(user.income_year);
+    const [assesInput, setAssesInput] = useState('');
     console.log(time.getFullYear());
     const [currentAsses,setCurrentAsses] = useState(time.getFullYear() + "-" + (time.getFullYear() + 1).toString());
+
+    const handleCreate = ()=> {
+        console.log(assesInput);
+        CreateAsses({token, assesInput}).then((data)=> {
+            console.log(data);
+            localStorage.setItem('user',data);
+        })
+        assesList.map((asses) => {
+                console.log('asseslist',asses);
+        })
+
+    }
+    const setCurrentAssesId= (id) => {
+        console.log("Cuurent ASS",id);
+    }
 
     return (
         <Wrapper>
             <div className='calculator-container'>
-                <button className='btn' onClick={() => setShowAsses(!showAsses)}>
-                    <FaBusinessTime />
-                        <span>Current Assesment : </span>{currentAsses}
-                    <FaCaretDown />
-                </button>
-                <div className='asees-container' >
-                    <div className={showAsses ? 'dropdown show-dropdown' : 'dropdown'}>
-                        {assesList.map((asses) => (
-                            <button
-                            className='dropdown-btn'
-                            >
-                                Logout
-                            </button>
-                        ))}
-                    </div>
 
-                    <FormRow
-                        type='date'
-                        name='basic_pay_amount'
-                        value='basic_pay_amount'
-                        labelText='Assesment'
-                        isPro={true}
-                    />
+                <div className='asees-container' >
+                    <div className='asses-create'>
+                        <input
+                            type='date'
+                            value={assesInput}
+                            name='income_year'
+                            onChange={(e) => setAssesInput(e.target.value)}
+                            className='input'
+                            labelText ="Assesment"
+                        />
+                        <button className='btn' onClick={handleCreate}>Create</button>
+                    </div>
+                    <button className='btn' onClick={() => setShowAsses(!showAsses)}>
+                        <FaBusinessTime />
+                            <span>Current Assesment : </span>{currentAsses}
+                        <FaCaretDown />
+                    </button>
+                    <div className={showAsses ? 'dropdown show-dropdown' : 'dropdown'}>
+                        <ul>
+                        {assesList.map((ass)=>(
+                            <li key={ass._id} className='btn' onClick={setCurrentAssesId(ass._id)}>{ass.income_year}</li>
+                        ))}
+                        </ul>
+                    </div>
                     
                 </div>
                 <div className='table-container'>

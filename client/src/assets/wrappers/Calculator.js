@@ -50,6 +50,8 @@ const Wrapper = styled.section`
     position: absolute;
     top: 40px;
     width: 100%;
+    margin-top: 50px;
+    z-index: 200;
     display: flex;
     flex-direction: column;
     background: var(--primary-100);
@@ -75,6 +77,10 @@ const Wrapper = styled.section`
     display: inline-flex;
     width: 120%;
     margin-left: -10%;
+  }
+  .asses-create {
+    display: flex;
+    flex-direction: row;
   }
 
 `

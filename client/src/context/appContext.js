@@ -35,6 +35,8 @@ import {
     GET_MSG_BEGIN,
     GET_MSG_SUCCESS,
     GET_MSG_ERROR,
+    SET_CONSULTING,
+    RESET_CONSULTING,
 } from "./actions"
 
 
@@ -50,6 +52,7 @@ const allMsg = localStorage.getItem('allMsg')
 const initialState = {
     isLoading: false,
     showAlert: false,
+    isConsulting:false,
     alertText: '',
     alertType: '',
     user: user ? JSON.parse(user) : null,
@@ -281,7 +284,7 @@ const AppProvider = ({ children }) => {
         console.log(currentHouse);
         dispatch({ type:UPDATE_HOUSE_BEGIN })
         try {
-            const { data } = await authFetch.patch('profile/house_property' , {houseProperty:currentHouse});
+            const { data } = await authFetch.patch('house_property' , {houseProperty:currentHouse});
             const { user, house , token } = data;
             
             console.log(house);
@@ -360,7 +363,7 @@ const AppProvider = ({ children }) => {
         console.log(currentSalary);
         dispatch({ type:UPDATE_SALARY_BEGIN })
         try {
-            const { data } = await authFetch.patch('profile/salary' , {salaryInfo:currentSalary});
+            const { data } = await authFetch.patch('salary' , {salaryInfo:currentSalary});
             const { user, salary , token } = data;
             
             console.log(salary);
@@ -455,6 +458,17 @@ const AppProvider = ({ children }) => {
             console.log('failed');
         }
     }
+    const setConsulting = () => {
+        dispatch({
+            type: SET_CONSULTING,
+        });
+    }
+
+    const reSetConsulting = () => {
+        dispatch({
+            type: RESET_CONSULTING,
+        });
+    }
 
 
     return (
@@ -478,6 +492,8 @@ const AppProvider = ({ children }) => {
           saveMsg,
           downloadFile,
           updateInvestment,
+          setConsulting,
+          reSetConsulting,
         }}
       >
         {children}

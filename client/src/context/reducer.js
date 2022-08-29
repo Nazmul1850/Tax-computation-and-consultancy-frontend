@@ -33,6 +33,8 @@ import {
     GET_MSG_BEGIN,
     GET_MSG_SUCCESS,
     GET_MSG_ERROR,
+    SET_CONSULTING,
+    RESET_CONSULTING,
  } from "./actions"
 const reducer = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -302,6 +304,18 @@ const reducer = (state, action) => {
       showAlert: true,
       alertType: 'danger',
       alertText: action.payload.msg,
+    }
+  }
+  if (action.type === SET_CONSULTING) {
+    return {
+      ...state,
+      isConsulting: true,
+    }
+  }
+  if (action.type === RESET_CONSULTING) {
+    return {
+      ...state,
+      isConsulting: false,
     }
   }
 

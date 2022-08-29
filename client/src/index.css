@@ -567,5 +567,12 @@ footer ul li a {
   right: 15px;
   
 }
+.btn-container {
+  display: flex;
+  flex-direction: row;
+}
+.color-notification {
+  background-color: red;
+}
 
 
