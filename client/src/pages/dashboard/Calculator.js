@@ -3,14 +3,15 @@ import Wrapper from "../../assets/wrappers/Calculator";
 import { useAppContext } from "../../context/appContext";
 import {FaBusinessTime, FaCaretDown} from 'react-icons/fa'
 
-import { FormRow } from '../../components';
+import { FormRow, CalculatorTable } from '../../components';
+
+
 
 const Calculator = () => {
-    const { user } = useAppContext();
+    const { user, token } = useAppContext();
     const [showAsses, setShowAsses] = useState(false);
     const [assesList, setAssesList] = useState([1,2,3]);
 
-    
 
 
     
@@ -21,30 +22,35 @@ const Calculator = () => {
 
     return (
         <Wrapper>
-            <div className='asees-container' >
+            <div className='calculator-container'>
                 <button className='btn' onClick={() => setShowAsses(!showAsses)}>
                     <FaBusinessTime />
                         <span>Current Assesment : </span>{currentAsses}
                     <FaCaretDown />
                 </button>
-                <div className={showAsses ? 'dropdown show-dropdown' : 'dropdown'}>
-                    {assesList.map((asses) => (
-                        <button
-                        className='dropdown-btn'
-                        >
-                            Logout
-                        </button>
-                    ))}
-                </div>
+                <div className='asees-container' >
+                    <div className={showAsses ? 'dropdown show-dropdown' : 'dropdown'}>
+                        {assesList.map((asses) => (
+                            <button
+                            className='dropdown-btn'
+                            >
+                                Logout
+                            </button>
+                        ))}
+                    </div>
 
-                <FormRow
-                    type='date'
-                    name='assesInput'
-                    value={assesInput}
-                    handleChange={(e) => setAssesInput(e.target.value)}
-                    isPro='false'
-                />
-                
+                    <FormRow
+                        type='date'
+                        name='basic_pay_amount'
+                        value='basic_pay_amount'
+                        labelText='Assesment'
+                        isPro={true}
+                    />
+                    
+                </div>
+                <div className='table-container'>
+                    <CalculatorTable token={token}/>
+                </div>
             </div>
         </Wrapper>
     )

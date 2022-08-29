@@ -98,5 +98,9 @@ const Wrapper = styled.aside`
     .replies {
     margin-top: 20px;
     }
+    .unseen {
+        background-color: var(--primary-100);
+        border: 1px solid rgb(107, 114, 12);
+    }
 `
 export default Wrapper

@@ -20,6 +20,12 @@ const Comment = ({
     const canReply = Boolean(currentUserId);
     const canEdit = currentUserId === comment.sender && !timePassed;
     var canDelete = currentUserId === comment.sender && !timePassed;
+    var pending = false;
+    console.log(comment.count, currentUserId, comment.sender);
+    console.log(comment);
+    if(comment.count === 1 && currentUserId !== comment.sender) {
+        pending = true;
+    }
     canDelete = true;
     const time = new Date(comment.time).toLocaleDateString();
     const parentCheck = parentId ? parentId : comment._id;
@@ -42,7 +48,12 @@ const Comment = ({
                         <div className="comment-author">{comment.senderName}</div>
                         <div>{time}</div>
                     </div>
-                    {!isEditing && <div className="comment-text">{comment.body}</div>}
+                    {!isEditing && 
+                        <>
+                            {pending && <div className="comment-text unseen">{comment.body}</div>}
+                            {!pending && <div className="comment-text">{comment.body}</div>}
+                        </>
+                        }
                     {isEditing && (
                     <CommentForm
                         submitLabel="Update"
