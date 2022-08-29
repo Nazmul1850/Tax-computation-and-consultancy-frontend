@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Wrapper from "../../assets/wrappers/ClientInfo";
 import Salary from "../../components/Salary";
+import Investment from "../../components/Investment";
+import Business from "../../components/Business";
+import AllHouse from "../../components/AllHouse";
 import { useAppContext } from "../../context/appContext";
 
 const ClientInfo = () => {
@@ -92,13 +95,13 @@ const ClientInfo = () => {
                         <Salary clientId={client._id}/>
                     )}
                     {investment && (
-                        <div>Investment Called</div>
+                       <Investment clientId={client._id}/>
                     )}
                     {houseProperty && (
-                        <div>House Called</div>
+                         <AllHouse clientId={client._id}/>
                     )}
                     {business && (
-                        <div>Business Called</div>
+                        <Business clientId={client._id}/>
                     )}
                     {files && (
                         <div>Files Called</div>
@@ -107,8 +110,10 @@ const ClientInfo = () => {
                         <div>Calculator Called</div>
                     )}
                 </div>
+
                 </>
             )}
+
         </Wrapper>
     )
 }

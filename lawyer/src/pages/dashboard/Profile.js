@@ -5,7 +5,7 @@ import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
 const initialState = {
       genderOptions:['', 'Male','Female','Others'],
-      circleOptions:['', '252','112','342'],
+      circleOptions:['', '252','112','342','225','230','310','111','150'],
       zoneOptions:['', 'ZONE 12','ZONE 13','ZONE 14'],
       residentStat:['', 'yes','no'],
       citizenTypes:['','A','B','C','D'],

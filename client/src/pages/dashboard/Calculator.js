@@ -3,6 +3,9 @@ import { FaBusinessTime, FaCaretDown } from 'react-icons/fa';
 import Wrapper from "../../assets/wrappers/Calculator";
 import { useAppContext } from "../../context/appContext";
 
+import Tables from '../../components/Tables'
+
+
 import { CalculatorTable } from '../../components';
 
 import CreateAsses from '../../apis/createAsses';
@@ -10,10 +13,18 @@ import AllAssesList from '../../apis/getAllAsses';
 
 
 
+const initState = {
+    assessmentYear : '2016-17',
+    name : 'Sattyajit',
+    TIN : '812365785415',
+    gender : 'Male'
+}
+
 const Calculator = () => {
     const { user, token } = useAppContext();
     const [showAsses, setShowAsses] = useState(false);
     const [assesList, setAssesList] = useState([]);
+
 
     useEffect(()=>{
         var tempAsses = []
@@ -28,6 +39,10 @@ const Calculator = () => {
         })
         setAssesList(tempAsses);
     },[])
+
+    const [basicInfo , setBasicInfo] = useState(initState);
+    const  tifs = {1: 'Joe', 2: 'Jane'};
+    
 
     
     let time = new Date(user.income_year);
@@ -51,6 +66,7 @@ const Calculator = () => {
     }
 
     return (
+        <>
         <Wrapper>
             <div className='calculator-container'>
 
@@ -84,7 +100,14 @@ const Calculator = () => {
                     <CalculatorTable token={token}/>
                 </div>
             </div>
+            
+            
         </Wrapper>
+
+        <Tables props={initState} title="kisu nah" />
+
+
+       </>
     )
 }
 export default Calculator;
