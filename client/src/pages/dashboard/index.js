@@ -8,6 +8,8 @@ import Investment from "./Investment";
 import HouseProperty from "./HouseProperty";
 import Files from "./Files";
 import AllHouse from "./AllHouse";
+import Return from "./Return";
+import Notification from './Notification'
 export {
     Profile,
     Calculator,
@@ -19,4 +21,6 @@ export {
     SharedLayout,
     Files,
     AllHouse,
+    Return,
+    Notification,
 }

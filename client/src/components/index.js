@@ -7,5 +7,8 @@ import Comment from './Comment'
 import CommentForm from './CommentForm'
 import HouseContainer from './HouseContainer'
 
-export {Logo, FormRow, Alert, FormRowSelect, QA,Comment, CommentForm , HouseContainer}
+import CalculatorTable from './CalculatorTable'
+
+export {Logo, FormRow, Alert, FormRowSelect, QA,Comment, CommentForm , HouseContainer, CalculatorTable}
+
 

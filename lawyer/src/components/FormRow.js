@@ -19,8 +19,8 @@ const FormRow = ({type,name,value,handleChange,labelText,hoverText,isPro}) => {
         
           <label htmlFor={name} className='form-label' onMouseOver={handleMouseOver} onMouseLeave={handleMouseOut} >
             {labelText || name}
-            {!isPro && 
-            isHovering && <div className='hoverText'>{hoverText}</div> }
+            {/* {!isPro && 
+            isHovering && <div className='hoverText'>{hoverText}</div> } */}
           </label>
 
          <input

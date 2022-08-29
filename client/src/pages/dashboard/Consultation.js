@@ -21,7 +21,7 @@ const token = localStorage.getItem('token');
 
 
 const initQ = {
-    isConsulting:localStorage.getItem('isConsulting') ? isConsulting:JSON.parse("false"),
+    // isConsulting:localStorage.getItem('isConsulting') ? isConsulting:JSON.parse("false"),
     parentId:'6305b321cc130702c2307a0e',
     "id":0,
     "type":"radio",
@@ -45,7 +45,7 @@ const initQ = {
 const Consultation = () => {
     const [values, setValues] = useState(initQ);
     
-    const {user, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles } = useAppContext();
+    const {user, showAlert, isConsulting,saveNewQuestion, getMessages, getSingleFiles, setConsulting,reSetConsulting } = useAppContext();
     
     const [backendComments, setBackendComments] = useState([]);
     const [rootComments, setrootComments] = useState([]);
@@ -65,14 +65,8 @@ const Consultation = () => {
 
     const toggleConsultation = ()=>{
         setTimeout(() => {
-            console.log("waiting")
-            console.log("local-->" + localStorage.getItem('isConsulting'));
-            let tempC = JSON.parse(localStorage.getItem('isConsulting'));
-            console.log(tempC)
-            tempC = !tempC;
-            setValues({...values, isConsulting:tempC, "id":0})
-            console.log(tempC)
-            localStorage.setItem('isConsulting',JSON.stringify(tempC))
+            if(isConsulting) reSetConsulting();
+            else setConsulting();
             
         },500)
     }
@@ -283,7 +277,7 @@ const Consultation = () => {
 
     return (
         <Wrapper>
-        {!values.isConsulting &&
+        {!isConsulting &&
             <form className='form' onSubmit={handleSubmit}>
                 {showAlert && <Alert />}
 
@@ -307,7 +301,7 @@ const Consultation = () => {
                 </div>
             </form>
         }
-        {values.isConsulting && 
+        {isConsulting && 
 
         <>
             <div className='comments'>
@@ -316,7 +310,6 @@ const Consultation = () => {
                 <CommentForm submitLabel="Write" handleSubmit={addComment}/>
                 <div className="comments-container">
                 {rootComments.map((rootComment) => (
-                    // <div key={rootComment._id}>{rootComment.body}</div>
                     <Comment 
                         key={rootComment._id} 
                         comment={rootComment}
