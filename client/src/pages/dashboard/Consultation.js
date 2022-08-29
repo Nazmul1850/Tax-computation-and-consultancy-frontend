@@ -316,7 +316,6 @@ const Consultation = () => {
                 <CommentForm submitLabel="Write" handleSubmit={addComment}/>
                 <div className="comments-container">
                 {rootComments.map((rootComment) => (
-                    // <div key={rootComment._id}>{rootComment.body}</div>
                     <Comment 
                         key={rootComment._id} 
                         comment={rootComment}

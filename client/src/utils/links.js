@@ -6,6 +6,7 @@ import {BsFillCalculatorFill} from 'react-icons/bs'
 import {BiMessageRoundedDots} from 'react-icons/bi'
 import {GiFamilyHouse} from 'react-icons/gi'
 import {GoFileSubmodule} from 'react-icons/go'
+import {TbReportMoney} from 'react-icons/tb'
 
 
 
@@ -16,7 +17,12 @@ const links = [
       path: '/',
       icon: <BsFillCalculatorFill />,
     },
-    
+    {
+      id: 10,
+      text: 'Tax Report',
+      path: '/report',
+      icon: <TbReportMoney />,
+    },
     {
       id: 4,
       text: 'salary',
