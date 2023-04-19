@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import DataCard from './DataCard';
 
-import './HouseContainer.css'
+import './HouseContainer.css';
 
 const HouseContainer = ({address , repair , total_area , share , annual_value , municipal , land_rev , loan_mort , insurance_premium , vacancy_allow , other , other_comment , total_deduction , total_house_income , total_taxable}) => {
   return (
@@ -16,10 +16,11 @@ const HouseContainer = ({address , repair , total_area , share , annual_value , 
           type="Repair Cost"
           value={repair}
         />
-        <DataCard 
-          type="Total Area"
-          value={total_area}
-        />
+        <div className= 'card_body'>
+            <p>
+                  Total Area : {total_area} sq-ft
+              </p> 
+          </div>
         <div className= 'card_body'>
             <p>
                   Share of Assessee : {share} %

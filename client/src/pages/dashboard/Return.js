@@ -94,15 +94,17 @@ const Return = () => {
     
     
     return (
-        <>
-        <div>
+        <Wrapper>
+            <div className="tables-return">
+            <div className="table-1">
             <Tables props={initState} title="Basic Info" />
 
-        </div>
-        <div>
-            <IncomeTaxTable props={allTaxable} title="Particulars of Income and Tax" />
-        </div>
-        </>
+            </div>
+            <div className="table-2">
+                <IncomeTaxTable props={allTaxable} title="Particulars of Income and Tax" />
+            </div>
+            </div>
+        </Wrapper>
         
         
     )

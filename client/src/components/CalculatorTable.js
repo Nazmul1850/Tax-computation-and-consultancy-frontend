@@ -179,59 +179,58 @@ const CalculatorTable = ({token , user})=> {
     //     name : 'Business Identification Number',
     //     value : ''
     // })
-    // useEffect(()=>{
-    //     AllCalculated({token}).then((datas)=>{
-    //         console.log(datas);
-    //         var temp = [];
-    //         for(let i = 0; i < 6; i++){
-    //             temp.push({
-    //                 slab: datas.fixedSlab[i],
-    //                 calculatedAmount:  datas.calculatedSlab[i],
-    //                 rate: datas.percentage[i].toString() + '%',
-    //                 tax: datas.slabTax[i]
-    //             })
-    //         }
-    //         temp.push({
-    //             slab: 'Total Taxable Income',
-    //             calculatedAmount: datas.total_taxable,
-    //             rate: 'Total Tax',
-    //             tax: datas.total_tax
-    //         })
-    //         var tempAllTaxable = []
-    //         tempAllTaxable.push({
-    //             total: "Salary",
-    //             amount: datas.salary_total_taxable
-    //         })
-    //         tempAllTaxable.push({
-    //             total: "House Property",
-    //             amount: datas.house_total_taxable
-    //         })
-    //         tempAllTaxable.push({
-    //             total: "Investment",
-    //             amount: datas.business_total_taxable
-    //         })
-    //         tempAllTaxable.push({
-    //             total: "Business",
-    //             amount: datas.investment_total_taxable
-    //         })
-    //         tempAllTaxable.push({
-    //             total: "Total Taxable",
-    //             amount: datas.total_taxable
-    //         })
+    useEffect(()=>{
+        AllCalculated({token}).then((datas)=>{
+            console.log(datas);
+            var temp = [];
+            for(let i = 0; i < 6; i++){
+                temp.push({
+                    slab: datas.fixedSlab[i],
+                    calculatedAmount:  datas.calculatedSlab[i],
+                    rate: datas.percentage[i].toString() + '%',
+                    tax: datas.slabTax[i]
+                })
+            }
+            temp.push({
+                slab: 'Total Taxable Income',
+                calculatedAmount: datas.total_taxable,
+                rate: 'Total Tax',
+                tax: datas.total_tax
+            })
+            var tempAllTaxable = []
+            tempAllTaxable.push({
+                total: "Salary",
+                amount: datas.salary_total_taxable
+            })
+            tempAllTaxable.push({
+                total: "House Property",
+                amount: datas.house_total_taxable
+            })
+            tempAllTaxable.push({
+                total: "Investment",
+                amount: datas.business_total_taxable
+            })
+            tempAllTaxable.push({
+                total: "Business",
+                amount: datas.investment_total_taxable
+            })
+            tempAllTaxable.push({
+                total: "Total Taxable",
+                amount: datas.total_taxable
+            })
             
-    //         setAllTaxable(tempAllTaxable);
-    //         setSlab(temp);
-    //         setCalculatorInfo(datas);
-    //     });
-    // },[]);
+            setAllTaxable(tempAllTaxable);
+            setSlab(temp);
+            setCalculatorInfo(datas);
+        });
+    },[]);
     // // setBasicInfo(temp);
     return (
         <Wrapper>
             <div className="slab-container">
-                {/* <Tables props={allTaxable} title="Total Taxables" /> 
+                {/* <Tables props={allTaxable} title="Total Taxables" />  */}
                 <DataTable columns={columns_2} data={allTaxable} title="All Taxables"/>   
                 <DataTable columns={coloums} data={slab} title="Slab Calculation"/>
-                <DataTable columns={coloums3} data={temp} title="Basic Information"/> */}
             </div>
         </Wrapper>
     )

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.main`
+const Wrapper = styled.section`
     border-radius: var(--borderRadius);
     width: 100%;
     background: var(--white);
@@ -16,26 +16,29 @@ const Wrapper = styled.main`
       margin-top: 1rem;
       margin-bottom: 2rem;
   }
-    .col-md-4 {
+  .col-md-4 {
     margin-bottom: 30px;
     }
+    .row {
+      justify-content: space-evenly;
+    }
 
-    .card {
+    .card-update {
     padding: 30px;
     border: solid 1px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     }
-    .card:hover {
+    .card-update:hover {
     box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
     }
-    .card-title {
+    .card-title-update {
     margin-top: 20px;
     }
-    .card-text {
+    .card-text-update {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
     }
-    .card-text .fa {
+    .card-text-update .fa {
     font-size: 26px;
     }
     .avatar {

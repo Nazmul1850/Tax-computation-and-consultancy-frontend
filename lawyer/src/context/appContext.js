@@ -268,6 +268,26 @@ const AppProvider = ({ children }) => {
         }
         clearAlert();
     }
+    const getSingleFiles = async () => {
+        const clientId = client._id;
+        try {
+            const {data} = await authFetch.post('getSingleFiles',{client});
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const downloadFile = async (fileId) => {
+        try{
+            const {data} = await authFetch.post('fileDownload', {fileId}, {
+                responseType: 'blob'
+            });
+            return data;
+        } catch (error) {
+            console.log('failed');
+        }
+    }
     
     return (
       <AppContext.Provider
@@ -286,6 +306,8 @@ const AppProvider = ({ children }) => {
           updateBusiness,
 
           setCurrentClient,
+          getSingleFiles,
+          downloadFile
 
         }}
       >

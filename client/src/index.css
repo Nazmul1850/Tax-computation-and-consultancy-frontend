@@ -336,7 +336,6 @@ ul {
 
 .row {
   display: flex;
-  z-index: 1;
 }
 
 .contact .row {

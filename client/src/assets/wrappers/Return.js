@@ -31,7 +31,11 @@ h3{
 /* tr:hover {
     background-color: var(--primary-500);
 } */
-
+.tables-return {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;

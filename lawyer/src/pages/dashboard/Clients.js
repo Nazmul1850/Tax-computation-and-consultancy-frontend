@@ -78,25 +78,23 @@ const Clients = () => {
             <div className="clearfix">
             <div className="row">
             {clients.map(data => (
-                <div className="col-md-4 animated fadeIn" key={data._id}>
-                <div className="card" onClick={() => updateUserId(data)}>
-                    <div className="card-body">
-                    <div className="avatar">
+                <div className="card-key" key={data._id}>
+                <div className="card-update" onClick={() => updateUserId(data)}>
+                    <div className="avatar-update">
                         <img
                         src={userLogo}
                         className="card-img-top"
                         alt=""
                         />
                     </div>
-                    <h5 className="card-title">
+                    <h5 className="card-title-update">
                         {data.name}
                     </h5>
-                    <p className="card-text">
+                    <p className="card-text-update">
                             {data.email}
                         <br />
                         <span className="phone">{data.phone}</span>
                     </p>
-                    </div>
                 </div>
                 </div>
             ))}

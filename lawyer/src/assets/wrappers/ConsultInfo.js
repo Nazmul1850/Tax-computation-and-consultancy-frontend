@@ -17,6 +17,18 @@ const Wrapper = styled.section`
       margin-bottom: 2rem;
   }
 
+  .qa-box-updated {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .qa-question {
+
+  }
+  .qa-answer {
+
+  }
+
 `
 
 export default Wrapper;

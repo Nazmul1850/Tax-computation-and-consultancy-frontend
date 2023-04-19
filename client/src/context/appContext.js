@@ -441,7 +441,7 @@ const AppProvider = ({ children }) => {
     }
     const getSingleFiles = async () => {
         try {
-            const {data} = await authFetch.get('getSingleFiles');
+            const {data} = await authFetch.post('getSingleFiles');
             return data;
         } catch (error) {
             console.log(error);

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import download from 'downloadjs';
 
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
-import FileUpload from "../../components/FileUpload"; 
+import FileUpload from "./FileUpload"; 
 import { useAppContext } from '../../context/appContext'
 
 
