@@ -1,10 +1,9 @@
 import React , { useEffect, useState } from 'react'
 import getAllHouse from '../../apis/getHouses';
-import Wrapper from '../../assets/wrappers/Logo';
+import Wrapper from '../../assets/wrappers/CalculatorTable';
 import { useAppContext } from '../../context/appContext';
 import { HouseContainer } from '../../components';
 
-import './AllHouse.css'
 
 
 
@@ -38,33 +37,35 @@ const AllHouse = () => {
 
 
   return (
-    <div className='allHouse'>
-      <div className='container'>
-        {myHouse.map((house) =>{
-          console.log("my houses: ",house);
-          return <HouseContainer 
-          key={house[0]._id}
-          address={house[0].address}
-          repair={house[0].repair}
-          total_area = {house[0].total_area}
-          share = {house[0].share}
-          annual_value = {house[0].annual_value}
-          municipal = {house[0].municipal}
-          land_rev = {house[0].land_rev}
-          loan_mort = {house[0].loan_mort}
-          insurance_premium = {house[0].insurance_premium}
-          vacancy_allow = {house[0].vacancy_allow}
-          other = {house[0].other}
-          other_comment = {house[0].other_comment}
-          total_deduction = {house[0].total_deduction}
-          total_house_income = {house[0].total_house_income}
-          total_taxable = { house[0].total_taxable}
+    <Wrapper>
+      <div className='allHouse'>
+        <div className='container-house'>
+          {myHouse.map((house) =>{
+            console.log("my houses: ",house);
+            return <HouseContainer 
+            key={house[0]._id}
+            address={house[0].address}
+            repair={house[0].repair}
+            total_area = {house[0].total_area}
+            share = {house[0].share}
+            annual_value = {house[0].annual_value}
+            municipal = {house[0].municipal}
+            land_rev = {house[0].land_rev}
+            loan_mort = {house[0].loan_mort}
+            insurance_premium = {house[0].insurance_premium}
+            vacancy_allow = {house[0].vacancy_allow}
+            other = {house[0].other}
+            other_comment = {house[0].other_comment}
+            total_deduction = {house[0].total_deduction}
+            total_house_income = {house[0].total_house_income}
+            total_taxable = { house[0].total_taxable}
+            
+            /> 
+          })}
+        </div>
           
-          /> 
-        })}
       </div>
-        
-    </div>
+    </Wrapper>
   )
 }
 

@@ -403,7 +403,7 @@ ul {
 .card {
   cursor: pointer;
   border-radius: 10px;
-  width: 100%;
+  width: 20%;
   transition: all 0.2s;
   background-color: white;
   box-shadow: 5px 5px 5px 5px #e5e5e5;
@@ -411,11 +411,12 @@ ul {
 .card:hover {
   transform:scale(1.03);
 }
+
 .qa-box {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
+} 
 
 .services .col-md-4 {
   margin: 1rem 1rem 1rem 1rem;

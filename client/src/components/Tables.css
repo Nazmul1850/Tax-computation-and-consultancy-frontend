@@ -3,7 +3,7 @@
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 94rem;
+    width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -21,7 +21,7 @@ h3{
     background: var(--primary-50);
     text-align: left;
 }
-tr:hover {background-color: coral;}
+
 
 .styled-table th,
 .styled-table td {

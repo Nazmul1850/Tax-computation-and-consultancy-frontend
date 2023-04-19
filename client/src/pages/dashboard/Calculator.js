@@ -104,9 +104,6 @@ const Calculator = () => {
             
         </Wrapper>
 
-        <Tables props={initState} title="kisu nah" />
-
-
        </>
     )
 }

@@ -1,8 +1,7 @@
 
-import main from "../assets/images/R.png"
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAppContext } from '../context/appContext'
+import main from "../assets/images/R.png";
+import { useAppContext } from '../context/appContext';
 
 const Landing_1 = () => {
     const {token} = useAppContext();
@@ -17,10 +16,9 @@ const Landing_1 = () => {
                 Tax <span>Calculating</span> app
             </h1>
             <p>
-                I'm baby wayfarers hoodie next level taiyaki brooklyn cliche blue
-                bottle single-origin coffee chia. Aesthetic post-ironic venmo,
-                quinoa lo-fi tote bag adaptogen everyday carry meggings +1 brunch
-                narwhal.
+            During the 19th century the prevalent idea was that taxes should serve mainly to finance the
+            government. In earlier times, and again today, governments have utilized taxation for other than
+            merely fiscal purposes. 
             </p>
             {/* <Link to='/register' className='btn btn-hero'>
                 Login/Register

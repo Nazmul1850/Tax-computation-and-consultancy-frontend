@@ -73,6 +73,10 @@ const ConsultaionInfo = () => {
             {isClientPresent && (
                 allQa.map((qa) => (
                     <QaCard key={qa._id} question={qa.question} answer={qa.answer}/>
+                    // <div className="qa-box-updated"> 
+                    //     <div className="qa-question">{qa.question}</div> 
+                    //     <div className="qa-answer">{qa.answer}</div>
+                    // </div>
                 ))
             )}
             {!isClientPresent && (

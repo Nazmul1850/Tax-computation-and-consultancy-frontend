@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import Wrapper from "../assets/wrappers/ConsultInfo";
 
 function QaCard({question, answer}) {
 
     const [answerList,setAnswerList] = useState([]);
 
     return (
-
-          <div className="card qa-box" >
+          <Wrapper>
+          <div className="card" >
             <div className="p-3">
               <p className="card-text">{question}</p>
             </div>
@@ -20,6 +21,7 @@ function QaCard({question, answer}) {
                 </p>
               </div>
           </div>
+          </Wrapper>
     );
   }
   export default QaCard;
