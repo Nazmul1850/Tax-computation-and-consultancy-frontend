@@ -119,7 +119,9 @@ const AppProvider = ({ children }) => {
     }
     const addUserToLocalStorage = ({ user, token }) => {
         localStorage.setItem('user', JSON.stringify(user))
+        console.log("Old token -> ",localStorage.getItem('token'))
         localStorage.setItem('token', token)
+        console.log("New token - >",token)
     }
 
     
@@ -197,7 +199,7 @@ const AppProvider = ({ children }) => {
         dispatch({type:LOGIN_USER_BEGIN})
         try {
             const {data} = await axios.post("/auth/login",currentUser)
-            // console.log(response)
+            console.log(data)
             const {user,house,salary,token} = data
             
             try {
@@ -205,10 +207,11 @@ const AppProvider = ({ children }) => {
                     user,
                     token
                   })
+                  console.log()
                 
                
             } catch (error) {
-                // console.log(error)
+                console.log(error)
             }
             
             dispatch({

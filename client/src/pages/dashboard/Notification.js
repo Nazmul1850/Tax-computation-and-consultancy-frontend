@@ -38,10 +38,14 @@ const Notification = () => {
       useEffect(()=>{
         AllNotification({token }).then((data) => {
             console.log(data);
-            data.sort(
-                (a, b) =>
-                new Date(b.time).getTime() - new Date(a.time).getTime()
-            );
+            try {
+                data.sort(
+                    (a, b) =>
+                    new Date(b.time).getTime() - new Date(a.time).getTime()
+                );
+            } catch (error) {
+                console.log("notification error");
+            }
             
             setNotification(data);
 
@@ -56,9 +60,9 @@ const Notification = () => {
                     Watch Your Notification...
                 </div>
             </div>
-            {allNotification.map((qa) => (
+            {/* {allNotification.map((qa) => (
                     <QaCard key={qa._id} body={qa.body} count={qa.count} setConsulting={setConsulting}/>
-            ))}
+            ))} */}
 
         </>
     )
